@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Faculty;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -14,5 +15,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call(SemesterSeeder::class);
+
+        Faculty::factory(6)->create();
     }
 }
