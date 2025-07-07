@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('firstname');
             $table->string('phone')->unique();
             $table->enum('gender', GenderEnum::values());
+            $table->softDeletes();
             $table->timestamps();
         });
 

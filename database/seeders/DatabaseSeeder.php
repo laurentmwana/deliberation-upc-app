@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Course;
 use App\Models\Department;
 use App\Models\Faculty;
 use App\Models\User;
@@ -22,5 +23,8 @@ class DatabaseSeeder extends Seeder
         $this->call(YearSeeder::class);
 
         $this->call(TeacherSeeder::class);
+        $this->call(CourseSeeder::class);
+        $this->call(StudentSeeder::class);
+
     }
 }

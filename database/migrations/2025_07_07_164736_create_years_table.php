@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('start');
             $table->integer('end');
             $table->boolean('is_closed')->default(false);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

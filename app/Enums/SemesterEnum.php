@@ -18,4 +18,14 @@ enum SemesterEnum: string
     case S12 = 'Semestre 12';
     case S13 = 'Semestre 13';
     case S14 = 'Semestre 14';
+
+    public static function values(): array
+    {
+        return array_map(fn(self $case) => $case->value, self::cases());
+    }
+
+    public static function keys(): array
+    {
+        return array_map(fn(self $case) => $case->name, self::cases());
+    }
 }
