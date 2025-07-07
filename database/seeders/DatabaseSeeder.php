@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Department;
 use App\Models\Faculty;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -17,5 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SemesterSeeder::class);
 
         Faculty::factory(6)->create();
+
+        Department::factory(12)->create();
     }
 }
