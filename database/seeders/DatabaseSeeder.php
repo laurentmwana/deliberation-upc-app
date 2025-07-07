@@ -20,5 +20,7 @@ class DatabaseSeeder extends Seeder
         Faculty::factory(6)->create();
 
         Department::factory(12)->create();
+
+        $this->call(YearSeeder::class);
     }
 }
