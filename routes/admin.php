@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminCourseController;
 use App\Http\Controllers\Admin\AdminDepartmentController;
 use App\Http\Controllers\Admin\AdminFacultyController;
 use App\Http\Controllers\Admin\AdminLevelController;
@@ -13,4 +14,5 @@ Route::prefix('admin')
         Route::resource('departement', AdminDepartmentController::class);
         Route::resource('level', AdminLevelController::class);
         Route::resource('teacher', AdminTeacherController::class);
+        Route::resource('course', AdminCourseController::class);
     });
