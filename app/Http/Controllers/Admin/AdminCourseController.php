@@ -34,7 +34,7 @@ class AdminCourseController extends Controller
         $course = Course::findOrFail($id);
 
         return Inertia::render('admin/course/show', [
-            'department' => $course,
+            'course' => $course,
         ]);
     }
 
@@ -43,7 +43,7 @@ class AdminCourseController extends Controller
         $course = Course::findOrFail($id);
 
         return Inertia::render('admin/course/edit', [
-            'department' => $course,
+            'course' => $course,
         ]);
     }
 
