@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminCourseController;
 use App\Http\Controllers\Admin\AdminDepartmentController;
 use App\Http\Controllers\Admin\AdminFacultyController;
 use App\Http\Controllers\Admin\AdminLevelController;
+use App\Http\Controllers\Admin\AdminStudentController;
 use App\Http\Controllers\Admin\AdminTeacherController;
 use App\Http\Controllers\Admin\AdminYearController;
 use Illuminate\Support\Facades\Route;
@@ -25,4 +26,7 @@ Route::prefix('admin')
 
         Route::get('year', [AdminYearController::class, 'index'])
             ->name('year.index');
+
+        Route::resource('student', AdminStudentController::class);
+
     });
