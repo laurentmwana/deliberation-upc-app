@@ -2,11 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Faculty;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\Unique;
 
-class FacultyRequest extends FormRequest
+class DepartmentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,14 +21,22 @@ class FacultyRequest extends FormRequest
      */
     public function rules(): array
     {
-        $id = $this->input('id');
-
         return [
             'name' => [
                 'required',
                 'string',
                 'between:2,100',
-                (new Unique(Faculty::class))->ignore($id)
+            ],
+
+            'alias' => [
+                'required',
+                'string',
+                'between:2,10'
+            ],
+
+            'faculty_id' => [
+                'required',
+                'exists:faculties,id'
             ]
         ];
     }
