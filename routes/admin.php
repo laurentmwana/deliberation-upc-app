@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\AdminYearController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')
+    ->middleware(['auth', 'verified', 'admin'])
     ->name('#')
     ->group(function () {
         Route::resource('faculty', AdminFacultyController::class);
@@ -30,5 +31,4 @@ Route::prefix('admin')
 
         Route::resource('student', AdminStudentController::class);
         Route::resource('grade', AdminGradeController::class);
-
     });

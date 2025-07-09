@@ -48,30 +48,30 @@ export const ago = (
 
     if (diffInSeconds < 60) {
         const value = fullText ? Math.floor(diffInSeconds) : diffInSeconds;
-        return `${value}${short ? labels.seconds : ''}${suffix}`;
+        return `${value} ${short ? labels.seconds : ''}${suffix}`;
     }
 
     if (minutes < 60) {
-        return `${minutes}${short ? labels.minutes : ''}${suffix}`;
+        return `${minutes} ${short ? labels.minutes : ''}${suffix}`;
     }
 
     if (hours < 24) {
-        return `${hours}${short ? labels.hours : ''}${suffix}`;
+        return `${hours} ${short ? labels.hours : ''}${suffix}`;
     }
 
     if (days < 7) {
-        return `${days}${short ? labels.days : ''}${suffix}`;
+        return `${days} ${short ? labels.days : ''}${suffix}`;
     }
 
     if (weeks < 4) {
-        return `${weeks}${short ? labels.weeks : ''}${suffix}`;
+        return `${weeks} ${short ? labels.weeks : ''}${suffix}`;
     }
 
     if (months < 12) {
-        return `${months}${short ? labels.months : ''}${suffix}`;
+        return `${months} ${short ? labels.months : ''}${suffix}`;
     }
 
-    return `${years}${short ? labels.years : ''}${suffix}`;
+    return `${years} ${short ? labels.years : ''}${suffix}`;
 };
 
 export const getFrenchDay = (dateStr: string): string => {

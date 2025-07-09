@@ -1,16 +1,15 @@
-import { type SharedData } from '@/types';
-import { Transition } from '@headlessui/react';
-import { Head, Link, useForm, usePage } from '@inertiajs/react';
-import { FormEventHandler } from 'react';
-
 import DeleteUser from '@/components/delete-user';
-import HeadingSmall from '@/components/heading-small';
+import { HeadingSmall } from '@/components/heading';
 import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import AppLayout from '@/layouts/app-layout';
 import SettingsLayout from '@/layouts/settings/layout';
+import { type SharedData } from '@/types';
+import { Transition } from '@headlessui/react';
+import { Head, Link, useForm, usePage } from '@inertiajs/react';
+import { FormEventHandler } from 'react';
 
 type ProfileForm = {
     name: string;
@@ -39,7 +38,7 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
 
             <SettingsLayout>
                 <div className="space-y-6">
-                    <HeadingSmall title="Profile information" description="Update your name and email address" />
+                    <HeadingSmall title="Profile information">Update your name and email address</HeadingSmall>
 
                     <form onSubmit={submit} className="space-y-6">
                         <div className="grid gap-2">
@@ -77,7 +76,7 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
 
                         {mustVerifyEmail && auth.user.email_verified_at === null && (
                             <div>
-                                <p className="-mt-4 text-sm text-muted-foreground">
+                                <p className="text-muted-foreground -mt-4 text-sm">
                                     Your email address is unverified.{' '}
                                     <Link
                                         href={route('verification.send')}
