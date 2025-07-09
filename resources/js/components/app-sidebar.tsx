@@ -2,33 +2,80 @@ import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
-import { type NavItem } from '@/types';
-import { Link } from '@inertiajs/react';
-import { BookOpen, Folder, LayoutGrid } from 'lucide-react';
+import { NavGroup, SharedData, type NavItem } from '@/types';
+import { Link, usePage } from '@inertiajs/react';
+import { Bookmark, BookOpen, FileText, GraduationCap, House, Info, MessageCircle, User, UserCog, Users } from 'lucide-react';
 import AppLogo from './app-logo';
-
-const mainNavItems: NavItem[] = [
-    {
-        title: 'Dashboard',
-        href: '/dashboard',
-        icon: LayoutGrid,
-    },
-];
 
 const footerNavItems: NavItem[] = [
     {
-        title: 'Repository',
-        href: 'https://github.com/laravel/react-starter-kit',
-        icon: Folder,
-    },
-    {
-        title: 'Documentation',
-        href: 'https://laravel.com/docs/starter-kits#react',
-        icon: BookOpen,
+        title: 'Utilisateur',
+        href: '#',
+        icon: UserCog,
     },
 ];
 
 export function AppSidebar() {
+    const { auth } = usePage<SharedData>().props;
+
+    const mainNavItemsGroup: NavGroup[] = [
+        {
+            title: 'Application',
+            items: [
+                {
+                    title: 'Accueil',
+                    href: route('home'),
+                    icon: House,
+                },
+                {
+                    title: 'A propos',
+                    href: '',
+                    icon: Info,
+                },
+            ],
+        },
+        {
+            title: 'Gestion',
+            items: [
+                {
+                    title: 'Facultés',
+                    href: route('#faculty.index'),
+                    icon: BookOpen,
+                },
+                {
+                    title: 'Départements',
+                    href: route('#department.index'),
+                    icon: Users,
+                },
+                {
+                    title: 'Promotions',
+                    href: route('#level.index'),
+                    icon: GraduationCap,
+                },
+                {
+                    title: 'Professeurs',
+                    href: route('#teacher.index'),
+                    icon: User,
+                },
+                {
+                    title: 'Cours',
+                    href: route('#course.index'),
+                    icon: Bookmark,
+                },
+                {
+                    title: 'Notes',
+                    href: route('#grade.index'),
+                    icon: FileText,
+                },
+                {
+                    title: 'Résultats',
+                    href: route('#grade.index'),
+                    icon: FileText,
+                },
+            ],
+        },
+    ];
+
     return (
         <Sidebar collapsible="icon" variant="inset">
             <SidebarHeader>
@@ -44,7 +91,7 @@ export function AppSidebar() {
             </SidebarHeader>
 
             <SidebarContent>
-                <NavMain items={mainNavItems} />
+                <NavMain items={mainNavItemsGroup} />
             </SidebarContent>
 
             <SidebarFooter>

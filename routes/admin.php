@@ -14,7 +14,7 @@ Route::prefix('admin')
     ->name('#')
     ->group(function () {
         Route::resource('faculty', AdminFacultyController::class);
-        Route::resource('departement', AdminDepartmentController::class);
+        Route::resource('department', AdminDepartmentController::class);
         Route::resource('level', AdminLevelController::class);
         Route::resource('teacher', AdminTeacherController::class);
         Route::resource('course', AdminCourseController::class);

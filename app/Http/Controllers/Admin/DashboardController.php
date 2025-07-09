@@ -13,6 +13,6 @@ class DashboardController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return Inertia::render('admin/dashboard');
+        return Inertia::render('admin/dashboard/index');
     }
 }
