@@ -12,4 +12,7 @@ Route::prefix('entrypoint')
 
         Route::get('/departments', [ApiDataSelectController::class, 'departments'])
             ->name('department.index');
+
+        Route::get('/levels', [ApiDataSelectController::class, 'levels'])
+            ->name('level.index');
     });

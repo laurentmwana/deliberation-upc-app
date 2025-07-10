@@ -8,6 +8,10 @@ Route::get('/', function () {
     return Inertia::render('welcome');
 })->name('home');
 
+Route::get('/about', function () {
+    return Inertia::render('welcome');
+})->name('about');
+
 Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::get('dashboard', DashboardController::class)->name('dashboard');
 });

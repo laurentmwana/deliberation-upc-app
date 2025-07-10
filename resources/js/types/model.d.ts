@@ -22,8 +22,10 @@ export interface DepartmentModel {
 export interface LevelModel {
     id: number;
     name: string;
+    alias: string;
     department_id: number;
     department: DepartmentModel;
+    courses: CourseModel[];
     created_at: string;
     updated_at: string;
     deleted_at: string | null;
@@ -37,4 +39,29 @@ export interface YearModel {
     is_closed: boolean;
     created_at: string;
     updated_at: string;
+}
+
+export interface CourseModel {
+    id: number;
+    name: string;
+    semester: string;
+    level_id: number;
+    level: LevelModel;
+    teacher: TeacherModel;
+    teacher_id: number;
+    created_at: string;
+    updated_at: string;
+    deleted_at: string | null;
+}
+
+export interface TeacherModel {
+    id: number;
+    name: string;
+    firstname: string;
+    gender: string;
+    phone: string;
+    departments: DepartmentModel[];
+    created_at: string;
+    updated_at: string;
+    deleted_at: string | null;
 }

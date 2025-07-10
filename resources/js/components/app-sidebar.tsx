@@ -4,7 +4,7 @@ import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { NavGroup, SharedData, type NavItem } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
-import { Bookmark, BookOpen, FileText, GraduationCap, House, Info, MessageCircle, User, UserCog, Users } from 'lucide-react';
+import { Bookmark, BookOpen, FileText, GraduationCap, Home, Info, User, UserCog, Users } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const footerNavItems: NavItem[] = [
@@ -25,11 +25,11 @@ export function AppSidebar() {
                 {
                     title: 'Accueil',
                     href: route('home'),
-                    icon: House,
+                    icon: Home,
                 },
                 {
-                    title: 'A propos',
-                    href: '',
+                    title: 'À propos',
+                    href: route('about'), // met une vraie route ici si elle existe
                     icon: Info,
                 },
             ],
@@ -68,8 +68,13 @@ export function AppSidebar() {
                     icon: FileText,
                 },
                 {
+                    title: 'Année académique',
+                    href: route('#year.index'),
+                    icon: FileText,
+                },
+                {
                     title: 'Résultats',
-                    href: route('#grade.index'),
+                    href: '#',
                     icon: FileText,
                 },
             ],

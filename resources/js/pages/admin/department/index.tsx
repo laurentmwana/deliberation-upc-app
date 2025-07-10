@@ -25,7 +25,7 @@ export default function Index() {
                     <div>{/* filter */}</div>
                     <Button variant="outline" size="sm" asChild>
                         <Link href={route('#department.create')}>
-                            <Plus size={15} className="mr-2" />
+                            <Plus size={15} />
                         </Link>
                     </Button>
                 </div>
