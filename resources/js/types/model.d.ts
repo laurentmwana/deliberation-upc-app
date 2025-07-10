@@ -61,6 +61,7 @@ export interface TeacherModel {
     gender: string;
     phone: string;
     departments: DepartmentModel[];
+    courses: CourseModel[];
     created_at: string;
     updated_at: string;
     deleted_at: string | null;

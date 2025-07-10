@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Department;
 use App\Models\Faculty;
 use App\Models\Level;
+use App\Models\Teacher;
 use Illuminate\Http\JsonResponse;
 
 class ApiDataSelectController extends Controller
@@ -32,6 +33,14 @@ class ApiDataSelectController extends Controller
             ->get(['name', 'id', 'alias']);
 
         return response()->json($levels);
+    }
+
+    public function teachears(): JsonResponse
+    {
+        $teachers =  Teacher::orderByDesc('updated_at')
+            ->get(['name', 'id', 'firstname']);
+
+        return response()->json($teachers);
     }
 
 }

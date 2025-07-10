@@ -26,7 +26,7 @@ class TeacherRequest extends FormRequest
     public function rules(): array
     {
         $id  = $this->input('id');
-        
+
         return [
             'name' => [
                 'required',
@@ -43,7 +43,7 @@ class TeacherRequest extends FormRequest
             'phone' => [
                 'required',
                 'string',
-                'between:10,10',
+                'between:10,15',
                 (new Unique(Teacher::class))->ignore($id)
             ],
 

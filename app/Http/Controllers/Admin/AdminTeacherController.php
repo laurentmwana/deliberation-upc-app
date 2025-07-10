@@ -13,7 +13,13 @@ class AdminTeacherController extends Controller
 {
     public function index(): Response
     {
-        return Inertia::render('admin/teacher/index');
+        $teachers = Teacher::with(['departments', 'courses'])
+            ->orderByDesc('updated_at')
+            ->paginate();
+
+        return Inertia::render('admin/teacher/index', [
+            'teachers' => $teachers
+        ]);
     }
 
     public function create(): Response
@@ -33,7 +39,8 @@ class AdminTeacherController extends Controller
 
     public function show(string $id): Response
     {
-        $teacher = Teacher::findOrFail($id);
+        $teacher = Teacher::with(['departments', 'courses'])
+            ->findOrFail($id);
 
         return Inertia::render('admin/teacher/show', [
             'teacher' => $teacher,
@@ -42,7 +49,8 @@ class AdminTeacherController extends Controller
 
     public function edit(string $id): Response
     {
-        $teacher = Teacher::findOrFail($id);
+        $teacher = Teacher::with(['departments'])
+            ->findOrFail($id);
 
         return Inertia::render('admin/teacher/edit', [
             'teacher' => $teacher,
