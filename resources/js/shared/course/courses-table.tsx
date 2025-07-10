@@ -4,24 +4,24 @@ import { ConfirmationPasswordDialog } from '@/components/ui/dialog-confirmation'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { ago } from '@/lib/date-time';
 import { excerpt } from '@/lib/utils';
-import { LevelModel } from '@/types/model';
+import { TeacherModel } from '@/types/model';
 import { Link } from '@inertiajs/react';
 import { Edit, Eye, FileText, Trash } from 'lucide-react';
 import React, { useState } from 'react';
 
-type LevelsTableProps = {
-    levels: LevelModel[];
+type TeachersTableProps = {
+    teachers: TeacherModel[];
 };
 
-export const LevelsTable: React.FC<LevelsTableProps> = ({ levels }) => {
+export const TeachersTable: React.FC<TeachersTableProps> = ({ teachers }) => {
     const [deleteId, setDeleteId] = useState<number | null>(null);
 
-    if (levels.length === 0) {
+    if (teachers.length === 0) {
         return (
             <div className="py-12 text-center">
                 <div className="mx-auto max-w-md">
                     <FileText className="mx-auto h-12 w-12 text-gray-400" />
-                    <h3 className="mt-4 text-lg font-medium text-gray-900 dark:text-gray-100">Aucune promotion</h3>
+                    <h3 className="mt-4 text-lg font-medium text-gray-900 dark:text-gray-100">Aucun professeur enregistré</h3>
                 </div>
             </div>
         );
@@ -32,61 +32,47 @@ export const LevelsTable: React.FC<LevelsTableProps> = ({ levels }) => {
             <TableHeader>
                 <TableRow>
                     <TableHead>Nom</TableHead>
-                    <TableHead>Département</TableHead>
-                    <TableHead>Orientation</TableHead>
+                    <TableHead>Postnom</TableHead>
+                    <TableHead>Départements</TableHead>
                     <TableHead>Cours</TableHead>
                     <TableHead>Création</TableHead>
-                    <TableHead>Action</TableHead>
+                    <TableHead>Actions</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
-                {levels.map((l) => (
-                    <TableRow key={l.id}>
-                        <TableCell>{excerpt(l.name, 40)}</TableCell>
+                {teachers.map((t) => (
+                    <TableRow key={t.id}>
+                        <TableCell>{excerpt(t.name, 25)}</TableCell>
+                        <TableCell>{excerpt(t.firstname, 25)}</TableCell>
                         <TableCell>
-                            {l.department ? (
-                                <Link className="hover:underline" href={route('#department.show', { id: l.department.id })}>
-                                    {excerpt(l.department.name, 30)}
-                                </Link>
-                            ) : (
-                                '-'
-                            )}
+                            <Badge variant="outline">{t.departments.length}</Badge>
                         </TableCell>
                         <TableCell>
-                            {l.orientation ? (
-                                <Link className="hover:underline" href={route('#orientation.show', { id: l.orientation.id })}>
-                                    {excerpt(l.orientation.name, 30)}
-                                </Link>
-                            ) : (
-                                '-'
-                            )}
+                            <Badge variant="outline">{t.courses.length}</Badge>
                         </TableCell>
-                        <TableCell>
-                            <Badge variant="outline">{l.courses.length}</Badge>
-                        </TableCell>
-                        <TableCell>{ago(l.created_at)}</TableCell>
+                        <TableCell>{ago(t.created_at)}</TableCell>
                         <TableCell>
                             <div className="flex items-center gap-2">
-                                <Link href={route('#level.edit', { id: l.id })}>
+                                <Link href={route('#teacher.edit', { id: t.id })}>
                                     <Button variant="outline" size="sm">
                                         <Edit size={14} />
                                     </Button>
                                 </Link>
 
-                                <Link href={route('#level.show', { id: l.id })}>
+                                <Link href={route('#teacher.show', { id: t.id })}>
                                     <Button variant="secondary" size="sm">
                                         <Eye size={14} />
                                     </Button>
                                 </Link>
 
-                                <Button variant="destructive" size="sm" onClick={() => setDeleteId(l.id)}>
+                                <Button variant="destructive" size="sm" onClick={() => setDeleteId(t.id)}>
                                     <Trash size={14} />
                                 </Button>
 
                                 <ConfirmationPasswordDialog
-                                    open={deleteId === l.id}
-                                    setOpen={(open) => setDeleteId(open ? l.id : null)}
-                                    url={route('#level.destroy', { id: l.id })}
+                                    open={deleteId === t.id}
+                                    setOpen={(open) => setDeleteId(open ? t.id : null)}
+                                    url={route('#teacher.destroy', { id: t.id })}
                                 />
                             </div>
                         </TableCell>

@@ -26,7 +26,7 @@ type TeacherFormData = {
 
 export const TeacherForm: React.FC<TeacherFormProps> = ({ teacher }) => {
     const { fetchData: fetchDepartments, isPending: isPendingDepartment } = useFetch<DepartmentModel[]>(route('^department.index'));
-    const { fetchData: fetchGenders, isPending: isPendingGenders } = useFetch<string[]>(route('^gender.index'));
+    const { fetchData: fetchGenders, isPending: isPendingGenders } = useFetch<string[]>(route('^enum.gender.index'));
 
     const teacherDepartments = teacher?.departments?.map((d) => d.id.toString()) ?? [];
 
@@ -113,12 +113,7 @@ export const TeacherForm: React.FC<TeacherFormProps> = ({ teacher }) => {
                 </div>
 
                 <div className="pt-2">
-                    <Button
-                        type="submit"
-                        disabled={processing}
-                        aria-disabled={processing}
-                        className="flex items-center justify-center gap-2"
-                    >
+                    <Button type="submit" disabled={processing} aria-disabled={processing} className="flex items-center justify-center gap-2">
                         {processing && <LoaderCircle className="h-4 w-4 animate-spin" />}
                         {processing ? 'Enregistrement...' : 'Enregistrer'}
                     </Button>

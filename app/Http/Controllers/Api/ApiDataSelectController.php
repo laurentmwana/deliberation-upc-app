@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Department;
 use App\Models\Faculty;
 use App\Models\Level;
+use App\Models\Orientation;
 use App\Models\Teacher;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class ApiDataSelectController extends Controller
 {
@@ -41,6 +43,21 @@ class ApiDataSelectController extends Controller
             ->get(['name', 'id', 'firstname']);
 
         return response()->json($teachers);
+    }
+
+    public function orientations(Request $request): JsonResponse
+    {
+        $departmentId = $request->query->get('department');
+
+        $builder = Orientation::orderByDesc('updated_at');
+
+        if (!empty($departmentId)) {
+            $builder->whereIn('department_id', [$departmentId]);
+        }
+
+        $orientations = $builder->get(['name', 'id']);
+
+        return response()->json($orientations);
     }
 
 }

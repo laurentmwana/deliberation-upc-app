@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class LevelRequest extends FormRequest
+class OrientationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,21 +27,9 @@ class LevelRequest extends FormRequest
                 'string',
                 'between:2,100',
             ],
-
-            'alias' => [
-                'required',
-                'string',
-                'between:2,10'
-            ],
-
             'department_id' => [
                 'required',
                 'exists:departments,id'
-            ],
-
-            'orientation_id' => [
-                'nullable',
-                'exists:orientations,id'
             ]
         ];
     }

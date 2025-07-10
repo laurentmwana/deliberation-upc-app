@@ -4,7 +4,7 @@ import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { NavGroup, SharedData, type NavItem } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
-import { Bookmark, BookOpen, FileText, GraduationCap, Home, Info, User, UserCog, Users } from 'lucide-react';
+import { ArrowUp10Icon, Bookmark, BookOpen, FileText, GraduationCap, Home, Info, User, UserCog, Users } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const footerNavItems: NavItem[] = [
@@ -46,6 +46,11 @@ export function AppSidebar() {
                     title: 'Départements',
                     href: route('#department.index'),
                     icon: Users,
+                },
+                {
+                    title: 'Orientation',
+                    href: route('#orientation.index'),
+                    icon: ArrowUp10Icon,
                 },
                 {
                     title: 'Promotions',

@@ -22,7 +22,7 @@ class StudentSeeder extends Seeder
 
         foreach ($years as $year) {
             foreach (Level::all() as $level) {
-                $nStudent = random_int(4, 6);
+                $nStudent = random_int(4, 5);
                 for ($i = 0; $i < $nStudent; $i++) {
                     $student = Student::factory()->create();
 

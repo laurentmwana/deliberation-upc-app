@@ -22,12 +22,17 @@ Route::prefix('entrypoint')
         Route::get('/teachers', [ApiDataSelectController::class, 'teachers'])
             ->name('teacher.index');
 
+        Route::get('/orientations', [ApiDataSelectController::class, 'orientations'])
+            ->name('orientation.index');
+
+
         // END DATA SELECT
 
         // DATA ENUM SELECT
-        Route::get('/genders', [ApiDataEnumSelectController::class, 'genders'])
-            ->name('gender.index');
-
+        Route::get('/enum/genders', [ApiDataEnumSelectController::class, 'genders'])
+            ->name('enum.gender.index');
+        Route::get('/enum/levels', [ApiDataEnumSelectController::class, 'levels'])
+            ->name('enum.level.index');
         // END DATA ENUM SELECT
 
     });

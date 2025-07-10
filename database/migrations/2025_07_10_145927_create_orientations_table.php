@@ -11,16 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('levels', function (Blueprint $table) {
+        Schema::create('orientations', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('alias');
             $table->foreignId('department_id')
+                ->nullable()
+                ->constrained()
+                ->cascadeOnDelete();
+            $table->timestamps();
+        });
+
+        Schema::table('levels', function (Blueprint $table) {
+            $table->foreignId('orientation_id')
+                ->nullable()
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnDelete();
-            $table->softDeletes();
-            $table->timestamps();
         });
     }
 
@@ -29,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('levels');
+        Schema::dropIfExists('orientations');
     }
 };

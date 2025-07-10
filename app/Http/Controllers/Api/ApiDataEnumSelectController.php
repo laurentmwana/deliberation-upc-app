@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Enums\GenderEnum;
+use App\Enums\LevelEnum;
 use App\Http\Controllers\Controller;
 use App\Models\Department;
 use App\Models\Faculty;
@@ -17,5 +18,12 @@ class ApiDataEnumSelectController extends Controller
         $genders =  GenderEnum::values();
 
         return response()->json($genders);
+    }
+
+    public function levels(): JsonResponse
+    {
+        $levels =  LevelEnum::values();
+
+        return response()->json($levels);
     }
 }
