@@ -3,7 +3,7 @@ import AppLayout from '@/layouts/app-layout';
 import { FacultyForm } from '@/shared/faculty/faculty-form';
 import { Head } from '@inertiajs/react';
 
-export default function FacultyCreatePage() {
+export default function Create() {
     return (
         <AppLayout>
             <Head title="Créer une faculté" />
@@ -12,7 +12,7 @@ export default function FacultyCreatePage() {
                     Ajoutez une nouvelle faculté pour organiser les départements et les formations académiques.
                 </Heading>
 
-                <div className="max-w-2xl rounded-lg bg-white p-6 shadow">
+                <div className="max-w-2xl">
                     <FacultyForm />
                 </div>
             </div>

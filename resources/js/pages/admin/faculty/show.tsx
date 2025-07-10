@@ -6,12 +6,12 @@ import { SharedData } from '@/types';
 import { FacultyModel } from '@/types/model';
 import { Head, usePage } from '@inertiajs/react';
 
-interface IndexProps {
+interface ShowProps {
     faculty: FacultyModel;
 }
 
-export default function Index() {
-    const { faculty } = usePage<SharedData & IndexProps>().props;
+export default function Show() {
+    const { faculty } = usePage<SharedData & ShowProps>().props;
 
     return (
         <AppLayout>

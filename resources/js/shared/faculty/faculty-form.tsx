@@ -26,10 +26,10 @@ export const FacultyForm: React.FC<FacultyFormProps> = ({ faculty }) => {
         e.preventDefault();
 
         faculty
-            ? put(route('faculty.update', faculty.id), {
+            ? put(route('#faculty.update', faculty.id), {
                   preserveScroll: true,
               })
-            : post(route('faculty.store'), {
+            : post(route('#faculty.store'), {
                   preserveScroll: true,
               });
     };
