@@ -1,7 +1,7 @@
 import { Heading } from '@/components/heading';
 import { Pagination } from '@/components/ui/pagination';
 import AppLayout from '@/layouts/app-layout';
-import { SemestersTable } from '@/shared/semester/semesters-table';
+import { SemestersTable } from '@/shared/semester/semester-collection';
 import { SharedData } from '@/types';
 import { SemesterModel } from '@/types/model';
 import { PaginationProps } from '@/types/paginate';
