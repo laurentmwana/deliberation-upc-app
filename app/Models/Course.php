@@ -13,7 +13,7 @@ class Course extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable =  ['name', 'credits', 'alias', 'level_id', 'teacher_id'];
+    protected $fillable =  ['name', 'credits', 'alias', 'level_id', 'teacher_id', 'semester_id'];
 
     public function level(): BelongsTo
     {
@@ -23,5 +23,10 @@ class Course extends Model
     public function teacher(): BelongsTo
     {
         return $this->belongsTo(Teacher::class);
+    }
+
+    public function semester(): BelongsTo
+    {
+        return $this->belongsTo(Semester::class);
     }
 }

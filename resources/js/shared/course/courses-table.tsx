@@ -4,24 +4,24 @@ import { ConfirmationPasswordDialog } from '@/components/ui/dialog-confirmation'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { ago } from '@/lib/date-time';
 import { excerpt } from '@/lib/utils';
-import { TeacherModel } from '@/types/model';
+import { CourseModel } from '@/types/model';
 import { Link } from '@inertiajs/react';
 import { Edit, Eye, FileText, Trash } from 'lucide-react';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
-type TeachersTableProps = {
-    teachers: TeacherModel[];
+type CoursesTableProps = {
+    courses: CourseModel[];
 };
 
-export const TeachersTable: React.FC<TeachersTableProps> = ({ teachers }) => {
+export const CoursesTable: React.FC<CoursesTableProps> = ({ courses }) => {
     const [deleteId, setDeleteId] = useState<number | null>(null);
 
-    if (teachers.length === 0) {
+    if (courses.length === 0) {
         return (
             <div className="py-12 text-center">
                 <div className="mx-auto max-w-md">
                     <FileText className="mx-auto h-12 w-12 text-gray-400" />
-                    <h3 className="mt-4 text-lg font-medium text-gray-900 dark:text-gray-100">Aucun professeur enregistré</h3>
+                    <h3 className="mt-4 text-lg font-medium text-gray-900 dark:text-gray-100">Aucun course enregistré</h3>
                 </div>
             </div>
         );
@@ -32,47 +32,61 @@ export const TeachersTable: React.FC<TeachersTableProps> = ({ teachers }) => {
             <TableHeader>
                 <TableRow>
                     <TableHead>Nom</TableHead>
-                    <TableHead>Postnom</TableHead>
-                    <TableHead>Départements</TableHead>
-                    <TableHead>Cours</TableHead>
+                    <TableHead>Crédits</TableHead>
+                    <TableHead>Promotion</TableHead>
+                    <TableHead>Semestre</TableHead>
                     <TableHead>Création</TableHead>
                     <TableHead>Actions</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
-                {teachers.map((t) => (
-                    <TableRow key={t.id}>
-                        <TableCell>{excerpt(t.name, 25)}</TableCell>
-                        <TableCell>{excerpt(t.firstname, 25)}</TableCell>
+                {courses.map((c) => (
+                    <TableRow key={c.id}>
+                        <TableCell>{excerpt(c.name, 25)}</TableCell>
                         <TableCell>
-                            <Badge variant="outline">{t.departments.length}</Badge>
+                            <Badge>{c.credits}</Badge>
                         </TableCell>
                         <TableCell>
-                            <Badge variant="outline">{t.courses.length}</Badge>
+                            {c.level ? (
+                                <Link className="hover:underline" href={route('#level.show', { id: c.level.id })}>
+                                    {excerpt(c.level.name, 30)}
+                                </Link>
+                            ) : (
+                                '-'
+                            )}
                         </TableCell>
-                        <TableCell>{ago(t.created_at)}</TableCell>
+                        <TableCell>
+                            {c.semester ? (
+                                <Link href="#" className="hover:underline">
+                                    {excerpt(c.semester.name, 30)}
+                                </Link>
+                            ) : (
+                                '-'
+                            )}
+                        </TableCell>
+                        <TableCell>{ago(c.created_at)}</TableCell>
                         <TableCell>
                             <div className="flex items-center gap-2">
-                                <Link href={route('#teacher.edit', { id: t.id })}>
+                                <Link href={route('#course.edit', { id: c.id })}>
                                     <Button variant="outline" size="sm">
                                         <Edit size={14} />
                                     </Button>
                                 </Link>
 
-                                <Link href={route('#teacher.show', { id: t.id })}>
+                                <Link href={route('#course.show', { id: c.id })}>
                                     <Button variant="secondary" size="sm">
                                         <Eye size={14} />
                                     </Button>
                                 </Link>
 
-                                <Button variant="destructive" size="sm" onClick={() => setDeleteId(t.id)}>
+                                <Button variant="destructive" size="sm" onClick={() => setDeleteId(c.id)}>
                                     <Trash size={14} />
                                 </Button>
 
                                 <ConfirmationPasswordDialog
-                                    open={deleteId === t.id}
-                                    setOpen={(open) => setDeleteId(open ? t.id : null)}
-                                    url={route('#teacher.destroy', { id: t.id })}
+                                    open={deleteId === c.id}
+                                    setOpen={(open) => setDeleteId(open ? c.id : null)}
+                                    url={route('#course.destroy', { id: c.id })}
                                 />
                             </div>
                         </TableCell>

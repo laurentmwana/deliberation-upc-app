@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Course;
 use App\Models\Level;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class CourseSeeder extends Seeder
@@ -14,13 +13,17 @@ class CourseSeeder extends Seeder
      */
     public function run(): void
     {
-        foreach (Level::all() as $level) {
+        foreach (Level::with('semesters')->get() as $level) {
             $nCourses = random_int(4, 5);
 
-            for ($i=0; $i <  $nCourses; $i++) {
-                Course::factory()->create(['level_id' => $level->id]);
+            for ($i = 0; $i < $nCourses; $i++) {
+                $semester = $level->semesters->random();
+
+                Course::factory()->create([
+                    'level_id' => $level->id,
+                    'semester_id' => $semester->id,
+                ]);
             }
         }
     }
 }
-

@@ -31,6 +31,13 @@ return new class extends Migration
 
             $table->primary(['level_id', 'semester_id']);
         });
+
+        Schema::table('courses', function (Blueprint $table) {
+            $table->foreignId('semester_id')
+                ->constrained()
+                ->cascadeOnDelete()
+                ->cascadeOnDelete();
+        });
     }
 
     /**

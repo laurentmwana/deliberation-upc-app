@@ -37,7 +37,7 @@ class ApiDataSelectController extends Controller
         return response()->json($levels);
     }
 
-    public function teachears(): JsonResponse
+    public function teachers(): JsonResponse
     {
         $teachers =  Teacher::orderByDesc('updated_at')
             ->get(['name', 'id', 'firstname']);
@@ -58,6 +58,23 @@ class ApiDataSelectController extends Controller
         $orientations = $builder->get(['name', 'id']);
 
         return response()->json($orientations);
+    }
+
+    public function levelsWithSemesters(): JsonResponse
+    {
+        $builder = Level::with(['semesters', 'department'])->orderByDesc('updated_at');
+
+        $builder->whereHas('semesters', function ($query) {
+            $query->orderByDesc('updated_at')->select(['id', 'name']);
+        });
+
+        $builder->whereHas('department', function ($query) {
+            $query->orderByDesc('updated_at')->select(['id', 'name', 'alias']);
+        });
+
+        $levels = $builder->get(['id', 'name', 'alias']);
+
+        return response()->json($levels);
     }
 
 }

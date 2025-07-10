@@ -25,7 +25,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('alias')->nullable();
             $table->integer('credits')->default(20);
-            $table->enum('semester', SemesterEnum::values());
             $table->softDeletes();
             $table->timestamps();
         });

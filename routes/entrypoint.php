@@ -25,6 +25,8 @@ Route::prefix('entrypoint')
         Route::get('/orientations', [ApiDataSelectController::class, 'orientations'])
             ->name('orientation.index');
 
+        Route::get('/level-with-semesters', [ApiDataSelectController::class, 'levelsWithSemesters'])
+            ->name('level-with-semester.index');
 
         // END DATA SELECT
 

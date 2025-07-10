@@ -39,6 +39,7 @@ export interface LevelModel {
     orientation_id: number | null;
     orientation: OrientationModel | null;
     courses: CourseModel[];
+    semesters: SemesterModel[];
     created_at: string;
     updated_at: string;
     deleted_at: string | null;
@@ -57,12 +58,14 @@ export interface YearModel {
 export interface CourseModel {
     id: number;
     name: string;
-    semester: string;
+    alias: string;
     credits: number;
     level_id: number;
     level: LevelModel;
     teacher: TeacherModel;
     teacher_id: number;
+    semester_id: number;
+    semester: SemesterModel;
     created_at: string;
     updated_at: string;
     deleted_at: string | null;
@@ -79,4 +82,11 @@ export interface TeacherModel {
     created_at: string;
     updated_at: string;
     deleted_at: string | null;
+}
+
+export interface SemesterModel {
+    id: number;
+    name: string;
+    created_at: string;
+    updated_at: string;
 }

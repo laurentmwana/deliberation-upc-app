@@ -13,7 +13,7 @@ class AdminCourseController extends Controller
 {
     public function index(): Response
     {
-        $courses = Course::with(['teacher', 'level'])
+        $courses = Course::with(['teacher', 'level', 'semester'])
             ->orderByDesc('updated_at')
             ->paginate();
 
@@ -37,7 +37,7 @@ class AdminCourseController extends Controller
 
     public function show(string $id): Response
     {
-        $course = Course::with(['teacher', 'level'])
+        $course = Course::with(['teacher', 'level', 'semester'])
             ->findOrFail($id);
 
         return Inertia::render('admin/course/show', [
@@ -47,7 +47,7 @@ class AdminCourseController extends Controller
 
     public function edit(string $id): Response
     {
-        $course = Course::with(['teacher', 'level'])
+        $course = Course::with(['teacher', 'level', 'semester'])
             ->findOrFail($id);
 
         return Inertia::render('admin/course/edit', [
@@ -58,7 +58,6 @@ class AdminCourseController extends Controller
 
     public function update(CourseRequest $request, string $id): RedirectResponse
     {
-
         $course = Course::findOrFail($id);
 
         $course->update($request->validated());
