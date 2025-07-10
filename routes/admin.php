@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminFacultyController;
 use App\Http\Controllers\Admin\AdminGradeController;
 use App\Http\Controllers\Admin\AdminLevelController;
 use App\Http\Controllers\Admin\AdminOrientationController;
+use App\Http\Controllers\Admin\AdminSemesterController;
 use App\Http\Controllers\Admin\AdminStudentController;
 use App\Http\Controllers\Admin\AdminTeacherController;
 use App\Http\Controllers\Admin\AdminYearController;
@@ -33,4 +34,7 @@ Route::prefix('admin')
 
         Route::resource('student', AdminStudentController::class);
         Route::resource('grade', AdminGradeController::class);
+
+        Route::get('semester', AdminSemesterController::class)
+            ->name('semester.index');
     });

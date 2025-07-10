@@ -39,8 +39,8 @@ class DepartmentObserver
         // Protection : s’assurer qu’il y a assez de semestres disponibles
         if (isset($semesterEnums[$startSemesterIndex], $semesterEnums[$startSemesterIndex + 1])) {
             $semesterNames = [
-                $semesterEnums[$startSemesterIndex]->value,
-                $semesterEnums[$startSemesterIndex + 1]->value,
+                $semesterEnums[$startSemesterIndex]->name,
+                $semesterEnums[$startSemesterIndex + 1]->name,
             ];
 
             $semesters = Semester::whereIn('name', $semesterNames)->get();

@@ -14,7 +14,8 @@ return new class extends Migration
     {
         Schema::create('semesters', function (Blueprint $table) {
             $table->id();
-            $table->enum('name', SemesterEnum::values());
+            $table->enum('name', SemesterEnum::keys());
+            $table->enum('full_name', SemesterEnum::values());
             $table->timestamps();
         });
 

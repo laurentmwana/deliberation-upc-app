@@ -15,7 +15,10 @@ class SemesterSeeder extends Seeder
     public function run(): void
     {
         foreach (SemesterEnum::cases() as $enum) {
-            Semester::create(['name' => $enum]);
+            Semester::create([
+                'name' => $enum->name,
+                'full_name' => $enum->value
+            ]);
         }
     }
 }
