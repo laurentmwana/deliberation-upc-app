@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\AdminOrientationController;
 use App\Http\Controllers\Admin\AdminSemesterController;
 use App\Http\Controllers\Admin\AdminStudentController;
 use App\Http\Controllers\Admin\AdminTeacherController;
+use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminYearController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,4 +38,6 @@ Route::prefix('admin')
 
         Route::get('semester', AdminSemesterController::class)
             ->name('semester.index');
+        Route::resource('user', AdminUserController::class);
+
     });

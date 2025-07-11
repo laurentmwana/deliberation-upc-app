@@ -2,10 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Enums\RoleUserEnum;
 use App\Models\ActualLevel;
 use App\Models\Course;
 use App\Models\Level;
 use App\Models\Student;
+use App\Models\User;
 use App\Models\Year;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -24,7 +26,11 @@ class StudentSeeder extends Seeder
             foreach (Level::all() as $level) {
                 $nStudent = random_int(4, 5);
                 for ($i = 0; $i < $nStudent; $i++) {
-                    $student = Student::factory()->create();
+
+                    $user = User::factory()->create(['role' => RoleUserEnum::STUDENT]);
+
+                    $student = Student::factory()->create(['user_id' => $user->id]);
+
 
                     $studentYears = $years->shuffle()->take(random_int(2, 3));
 

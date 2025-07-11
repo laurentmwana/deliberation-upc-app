@@ -31,10 +31,11 @@ Route::prefix('entrypoint')
         Route::get('/years', [ApiDataSelectController::class, 'years'])
             ->name('year.index');
 
-
-
         Route::get('/level/with/student-and-course', [ApiDataSelectController::class, 'levelWithCourseAndStudents'])
             ->name('level.course-student');
+
+        Route::get('/students', [ApiDataSelectController::class, 'students'])
+            ->name('student.index');
 
         // END DATA SELECT
 

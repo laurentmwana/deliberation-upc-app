@@ -7,6 +7,7 @@ use App\Models\Department;
 use App\Models\Faculty;
 use App\Models\Level;
 use App\Models\Orientation;
+use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\Year;
 use Illuminate\Http\JsonResponse;
@@ -106,6 +107,15 @@ class ApiDataSelectController extends Controller
         ->get(['id', 'name', 'alias']);
 
         return response()->json($levels);
+    }
+
+
+    public function students(): JsonResponse
+    {
+        $students = Student::orderByDesc('updated_at')
+            ->get(['name', 'id', 'firstname']);
+
+        return response()->json($students);
     }
 
 }

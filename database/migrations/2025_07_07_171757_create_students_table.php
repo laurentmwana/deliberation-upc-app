@@ -19,6 +19,12 @@ return new class extends Migration
             $table->string('registration_token')->unique();
             $table->enum('gender', GenderEnum::values());
             $table->date('birth');
+            $table->foreignId('user_id')
+                ->unique()
+                ->nullable()
+                ->constrained()
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
             $table->softDeletes();
             $table->timestamps();
         });

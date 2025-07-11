@@ -98,7 +98,7 @@ export function AppSidebar() {
 
                 {
                     title: 'Utilisateur',
-                    href: '#',
+                    href: route('#user.index'),
                     icon: UserCog,
                 },
             ],
