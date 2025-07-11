@@ -8,6 +8,7 @@ use App\Models\Faculty;
 use App\Models\Level;
 use App\Models\Orientation;
 use App\Models\Teacher;
+use App\Models\Year;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -76,5 +77,17 @@ class ApiDataSelectController extends Controller
 
         return response()->json($levels);
     }
+
+    public function years(Request $request): JsonResponse
+    {
+        $closed = $request->query->getBoolean('closed', false);
+
+        $years = Year::orderByDesc('updated_at')
+            ->where('is_closed', '=', $closed)
+            ->get(['id', 'name', 'is_closed']);
+
+        return response()->json($years);
+    }
+
 
 }

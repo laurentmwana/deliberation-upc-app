@@ -92,3 +92,59 @@ export interface SemesterModel {
     created_at: string;
     updated_at: string;
 }
+
+export interface StudentModel {
+    id: number;
+    name: string;
+    firstname: string;
+    gender: string;
+    birth: string;
+    registration_token: string;
+    grades: GradeModel[];
+    actual_level: ActualLevelModel;
+    created_at: string;
+    updated_at: string;
+    deleted_at: string | null;
+}
+
+export interface ActualLevelModel {
+    id: number;
+    level_id: number;
+    year_id: number;
+    student_id: number;
+    student: StudentModel;
+    year: YearModel;
+    level: LevelModel;
+    historic_level: HistoricLevelModel[];
+    created_at: string;
+    created_at: string;
+    updated_at: string;
+}
+
+export interface HistoricLevelModel {
+    id: number;
+    level_id: number;
+    year_id: number;
+    student_id: number;
+    student: StudentModel;
+    year: YearModel;
+    level: LevelModel;
+    created_at: string;
+    created_at: string;
+    updated_at: string;
+}
+
+export interface GradeModel {
+    id: number;
+    level_id: number;
+    year_id: number;
+    student_id: number;
+    course_id: number;
+    student: StudentModel;
+    year: YearModel;
+    level: LevelModel;
+    course: CourseModel;
+    created_at: string;
+    created_at: string;
+    updated_at: string;
+}

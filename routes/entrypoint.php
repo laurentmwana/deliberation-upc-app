@@ -28,6 +28,9 @@ Route::prefix('entrypoint')
         Route::get('/level-with-semesters', [ApiDataSelectController::class, 'levelsWithSemesters'])
             ->name('level-with-semester.index');
 
+        Route::get('/years', [ApiDataSelectController::class, 'years'])
+            ->name('year.index');
+
         // END DATA SELECT
 
         // DATA ENUM SELECT
