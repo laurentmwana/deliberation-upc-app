@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminCourseController;
+use App\Http\Controllers\Admin\AdminDeliberationController;
 use App\Http\Controllers\Admin\AdminDepartmentController;
 use App\Http\Controllers\Admin\AdminFacultyController;
 use App\Http\Controllers\Admin\AdminGradeController;
@@ -39,5 +40,6 @@ Route::prefix('admin')
         Route::get('semester', AdminSemesterController::class)
             ->name('semester.index');
         Route::resource('user', AdminUserController::class);
+        Route::resource('deliberation', AdminDeliberationController::class);
 
     });

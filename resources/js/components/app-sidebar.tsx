@@ -8,6 +8,7 @@ import {
     Book,
     Calendar,
     ClipboardList,
+    Database,
     File,
     GraduationCap,
     Home,
@@ -90,6 +91,12 @@ export function AppSidebar() {
                     title: 'Étudiants',
                     href: route('#student.index'),
                     icon: Users,
+                },
+
+                {
+                    title: 'Délibération',
+                    href: route('#deliberation.index'),
+                    icon: Database,
                 },
                 {
                     title: 'Résultats',
