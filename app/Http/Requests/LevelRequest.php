@@ -37,6 +37,11 @@ class LevelRequest extends FormRequest
             'department_id' => [
                 'required',
                 'exists:departments,id'
+            ],
+
+            'orientation_id' => [
+                'nullable',
+                'exists:orientations,id'
             ]
         ];
     }

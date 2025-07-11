@@ -1,23 +1,26 @@
-import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
-import { NavGroup, SharedData, type NavItem } from '@/types';
-import { Link, usePage } from '@inertiajs/react';
-import { Bookmark, BookOpen, FileText, GraduationCap, House, Info, MessageCircle, User, UserCog, Users } from 'lucide-react';
+import { NavGroup } from '@/types';
+import { Link } from '@inertiajs/react';
+import {
+    ArrowUp10Icon,
+    Book,
+    Calendar,
+    ClipboardList,
+    GraduationCap,
+    Home,
+    Info,
+    ListEnd,
+    School,
+    ScrollText,
+    User,
+    UserCog,
+    Users,
+} from 'lucide-react';
 import AppLogo from './app-logo';
 
-const footerNavItems: NavItem[] = [
-    {
-        title: 'Utilisateur',
-        href: '#',
-        icon: UserCog,
-    },
-];
-
 export function AppSidebar() {
-    const { auth } = usePage<SharedData>().props;
-
     const mainNavItemsGroup: NavGroup[] = [
         {
             title: 'Application',
@@ -25,11 +28,11 @@ export function AppSidebar() {
                 {
                     title: 'Accueil',
                     href: route('home'),
-                    icon: House,
+                    icon: Home,
                 },
                 {
-                    title: 'A propos',
-                    href: '',
+                    title: 'À propos',
+                    href: route('about'),
                     icon: Info,
                 },
             ],
@@ -40,37 +43,63 @@ export function AppSidebar() {
                 {
                     title: 'Facultés',
                     href: route('#faculty.index'),
-                    icon: BookOpen,
+                    icon: School, // Plus approprié pour les facultés
                 },
                 {
                     title: 'Départements',
                     href: route('#department.index'),
-                    icon: Users,
+                    icon: Users, // OK pour représenter des groupes
+                },
+                {
+                    title: 'Orientation',
+                    href: route('#orientation.index'),
+                    icon: ArrowUp10Icon, // OK pour représenter un classement
                 },
                 {
                     title: 'Promotions',
                     href: route('#level.index'),
-                    icon: GraduationCap,
+                    icon: GraduationCap, // Parfait pour les promotions
                 },
                 {
                     title: 'Professeurs',
                     href: route('#teacher.index'),
-                    icon: User,
+                    icon: User, // OK pour les professeurs
                 },
                 {
                     title: 'Cours',
                     href: route('#course.index'),
-                    icon: Bookmark,
+                    icon: Book, // Plus approprié que Bookmark pour des cours
+                },
+                {
+                    title: 'Année académique',
+                    href: route('#year.index'),
+                    icon: Calendar, // Parfait pour une période
+                },
+                {
+                    title: 'Semestre',
+                    href: route('#semester.index'),
+                    icon: ListEnd, // OK pour représenter une séquence
                 },
                 {
                     title: 'Notes',
                     href: route('#grade.index'),
-                    icon: FileText,
+                    icon: ClipboardList, // Plus approprié que FileText pour des notes
+                },
+                {
+                    title: 'Étudiants',
+                    href: route('#student.index'),
+                    icon: Users,
                 },
                 {
                     title: 'Résultats',
-                    href: route('#grade.index'),
-                    icon: FileText,
+                    href: '#',
+                    icon: ScrollText,
+                },
+
+                {
+                    title: 'Utilisateur',
+                    href: route('#user.index'),
+                    icon: UserCog,
                 },
             ],
         },
@@ -95,7 +124,6 @@ export function AppSidebar() {
             </SidebarContent>
 
             <SidebarFooter>
-                <NavFooter items={footerNavItems} className="mt-auto" />
                 <NavUser />
             </SidebarFooter>
         </Sidebar>

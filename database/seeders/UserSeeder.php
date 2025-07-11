@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\RoleUserEnum;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -15,7 +16,8 @@ class UserSeeder extends Seeder
     {
         User::factory()->create([
             'name' => 'Labeya',
-            'email' => 'laurentmwn@gmail.com'
+            'email' => 'laurentmwn@gmail.com',
+            'role' => RoleUserEnum::ADMIN->value,
         ]);
     }
 }

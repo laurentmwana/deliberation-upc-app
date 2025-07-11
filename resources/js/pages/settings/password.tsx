@@ -1,14 +1,13 @@
+import { HeadingSmall } from '@/components/heading';
 import InputError from '@/components/input-error';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import AppLayout from '@/layouts/app-layout';
 import SettingsLayout from '@/layouts/settings/layout';
 import { Transition } from '@headlessui/react';
 import { Head, useForm } from '@inertiajs/react';
 import { FormEventHandler, useRef } from 'react';
-
-import HeadingSmall from '@/components/heading-small';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 
 export default function Password() {
     const passwordInput = useRef<HTMLInputElement>(null);
@@ -42,11 +41,11 @@ export default function Password() {
 
     return (
         <AppLayout>
-            <Head title="Password settings" />
+            <Head title="Profile settings" />
 
             <SettingsLayout>
                 <div className="space-y-6">
-                    <HeadingSmall title="Update password" description="Ensure your account is using a long, random password to stay secure" />
+                    <HeadingSmall title="Update password">Ensure your account is using a long, random password to stay secure</HeadingSmall>
 
                     <form onSubmit={updatePassword} className="space-y-6">
                         <div className="grid gap-2">

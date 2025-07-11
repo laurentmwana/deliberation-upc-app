@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('alias');
             $table->foreignId('department_id')
                 ->constrained()
-                    ->cascadeOnDelete()
-                    ->cascadeOnDelete();
+                ->cascadeOnDelete()
+                ->cascadeOnDelete();
             $table->softDeletes();
             $table->timestamps();
         });

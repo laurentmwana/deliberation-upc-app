@@ -23,7 +23,6 @@ class CourseFactory extends Factory
             'name' => fake()->name(),
             'alias' => fake()->unique()->name(),
             'credits' => random_int(5, 20),
-            'semester' => fake()->randomElement(SemesterEnum::values()),
             'level_id' => Level::all()->random()->id,
             'teacher_id' => Teacher::all()->random()->id
         ];

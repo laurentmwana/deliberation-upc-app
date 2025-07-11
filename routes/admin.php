@@ -5,16 +5,21 @@ use App\Http\Controllers\Admin\AdminDepartmentController;
 use App\Http\Controllers\Admin\AdminFacultyController;
 use App\Http\Controllers\Admin\AdminGradeController;
 use App\Http\Controllers\Admin\AdminLevelController;
+use App\Http\Controllers\Admin\AdminOrientationController;
+use App\Http\Controllers\Admin\AdminSemesterController;
 use App\Http\Controllers\Admin\AdminStudentController;
 use App\Http\Controllers\Admin\AdminTeacherController;
+use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminYearController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')
+    ->middleware(['auth', 'verified', 'admin'])
     ->name('#')
     ->group(function () {
         Route::resource('faculty', AdminFacultyController::class);
         Route::resource('department', AdminDepartmentController::class);
+        Route::resource('orientation', AdminOrientationController::class);
         Route::resource('level', AdminLevelController::class);
         Route::resource('teacher', AdminTeacherController::class);
         Route::resource('course', AdminCourseController::class);
@@ -30,5 +35,9 @@ Route::prefix('admin')
 
         Route::resource('student', AdminStudentController::class);
         Route::resource('grade', AdminGradeController::class);
+
+        Route::get('semester', AdminSemesterController::class)
+            ->name('semester.index');
+        Route::resource('user', AdminUserController::class);
 
     });

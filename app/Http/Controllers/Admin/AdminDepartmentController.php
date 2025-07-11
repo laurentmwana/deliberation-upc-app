@@ -13,7 +13,13 @@ class AdminDepartmentController extends Controller
 {
     public function index(): Response
     {
-        return Inertia::render('admin/department/index');
+        $departments = Department::with(['faculty', 'levels'])
+            ->orderByDesc('updated_at')
+            ->paginate();
+
+        return Inertia::render('admin/department/index', [
+            'departments' => $departments,
+        ]);
     }
 
     public function create(): Response
@@ -31,7 +37,8 @@ class AdminDepartmentController extends Controller
 
     public function show(string $id): Response
     {
-        $department = Department::findOrFail($id);
+        $department = Department::with(['faculty', 'levels'])
+            ->findOrFail($id);
 
         return Inertia::render('admin/department/show', [
             'department' => $department,
@@ -40,7 +47,8 @@ class AdminDepartmentController extends Controller
 
     public function edit(string $id): Response
     {
-        $department = Department::findOrFail($id);
+        $department = Department::with(['faculty'])
+            ->findOrFail($id);
 
         return Inertia::render('admin/department/edit', [
             'department' => $department,
@@ -50,7 +58,6 @@ class AdminDepartmentController extends Controller
 
     public function update(DepartmentRequest $request, string $id): RedirectResponse
     {
-
         $department = Department::findOrFail($id);
 
         $department->update($request->validated());

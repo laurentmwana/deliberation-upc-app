@@ -14,7 +14,13 @@ class AdminGradeController extends Controller
 {
     public function index(): Response
     {
-        return Inertia::render('admin/grade/index');
+        $grades = Grade::with(['level', 'student', 'course', 'year'])
+            ->orderByDesc('updated_at')
+            ->paginate();
+
+        return Inertia::render('admin/grade/index', [
+            'grades' => $grades
+        ]);
     }
 
     public function create(): Response
@@ -32,7 +38,8 @@ class AdminGradeController extends Controller
 
     public function show(string $id): Response
     {
-        $grade = Grade::findOrFail($id);
+        $grade = Grade::with(['level', 'student', 'course', 'year'])
+            ->findOrFail($id);
 
         return Inertia::render('admin/grade/show', [
             'grade' => $grade,
@@ -41,12 +48,9 @@ class AdminGradeController extends Controller
 
     public function edit(Request $request,  $id): Response
     {
-        $request->validate([
-            'password' => ['required', 'current_password'],
-        ]);
 
-
-        $grade = Grade::findOrFail($id);
+        $grade = Grade::with(['level', 'student', 'course', 'year'])
+            ->findOrFail($id);
 
         return Inertia::render('admin/grade/edit', [
             'grade' => $grade,
@@ -56,7 +60,6 @@ class AdminGradeController extends Controller
 
     public function update(GradeRequest $request, string $id): RedirectResponse
     {
-
         $grade = Grade::findOrFail($id);
 
         $grade->update($request->validated());
@@ -70,7 +73,7 @@ class AdminGradeController extends Controller
         $request->validate([
             'password' => ['required', 'current_password'],
         ]);
-        
+
         $grade = Grade::findOrFail($id);
 
         $grade->delete();

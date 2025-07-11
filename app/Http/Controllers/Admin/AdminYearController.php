@@ -13,8 +13,13 @@ class AdminYearController extends Controller
 {
     public function index(Request $request)
     {
+        $years = Year::orderByDesc('updated_at')
+            ->orderBy('is_closed')
+            ->paginate();
 
-        return Inertia::render('admin/year/index');
+        return Inertia::render('admin/year/index', [
+            'years' => $years
+        ]);
     }
 
     public function closed(Request $request, string $id): RedirectResponse
@@ -60,7 +65,7 @@ class AdminYearController extends Controller
         ]);
 
         if ($newYear instanceof Year) {
-            $year->update(['is_closed' => true]);
+            $year->update(['is_closed' => true, 'closed_at' => now()]);
         }
 
         return $newYear;

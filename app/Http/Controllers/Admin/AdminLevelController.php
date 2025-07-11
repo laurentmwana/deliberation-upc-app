@@ -13,7 +13,13 @@ class AdminLevelController extends Controller
 {
     public function index(): Response
     {
-        return Inertia::render('admin/level/index');
+        $levels = Level::with(['courses', 'department', 'orientation'])
+            ->orderByDesc('updated_at')
+            ->paginate();
+
+        return Inertia::render('admin/level/index', [
+            'levels' => $levels
+        ]);
     }
 
     public function create(): Response
@@ -31,7 +37,8 @@ class AdminLevelController extends Controller
 
     public function show(string $id): Response
     {
-        $level = Level::findOrFail($id);
+        $level = Level::with(['courses', 'department', 'orientation'])
+            ->findOrFail($id);
 
         return Inertia::render('admin/level/show', [
             'level' => $level,
@@ -40,7 +47,8 @@ class AdminLevelController extends Controller
 
     public function edit(string $id): Response
     {
-        $level = Level::findOrFail($id);
+        $level = Level::with(['department', 'orientation'])
+            ->findOrFail($id);
 
         return Inertia::render('admin/level/edit', [
             'level' => $level,

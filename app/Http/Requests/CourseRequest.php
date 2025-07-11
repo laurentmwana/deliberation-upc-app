@@ -42,9 +42,9 @@ class CourseRequest extends FormRequest
                 'between:1,20'
             ],
 
-            'semester' => [
+            'semester_id' => [
                 'required',
-                (new Enum(SemesterEnum::cases())),
+                'exists:semesters,id'
             ],
 
             'level_id' => [

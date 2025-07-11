@@ -2,49 +2,50 @@
 
 namespace App\Observers;
 
+use App\Enums\LevelEnum;
+use App\Enums\SemesterEnum;
 use App\Models\Department;
 use App\Models\Level;
+use App\Models\Semester;
 
 class DepartmentObserver
 {
-    private const LEVELS = [
-        [
-            'name' => 'Licence 1',
-            'alias' => 'L1',
-        ],
-        [
-            'name' => 'Licence 2',
-            'alias' => 'L2',
-        ],
-        [
-            'name' => 'Licence 3',
-            'alias' => 'L3',
-        ],
-        [
-            'name' => 'Master 1',
-            'alias' => 'M1',
-        ],
-        [
-            'name' => 'Master 2',
-            'alias' => 'M2',
-        ],
-        [
-            'name' => 'Doctorat 1',
-            'alias' => 'D1',
-        ],
-        [
-            'name' => 'Doctorat 2',
-            'alias' => 'D2',
-        ],
-    ];
-
-
     /**
      * Handle the Department "created" event.
      */
     public function created(Department $department): void
     {
-        $department->levels()->createMany(self::LEVELS);
+        foreach (LevelEnum::cases() as $index => $enum) {
+            $level = $department->levels()->create([
+                'name' => $enum->value,
+                'alias' => $enum->name,
+            ]);
+
+            $this->addSemestersToLevel($level, $index);
+        }
     }
 
+    /**
+     * Add 2 sequential semesters to a level based on its position.
+     */
+    private function addSemestersToLevel(Level $level, int $levelIndex): void
+    {
+        // Chaque niveau a deux semestres
+        $startSemesterIndex = $levelIndex * 2;
+
+        // On récupère les enums dans l’ordre
+        $semesterEnums = SemesterEnum::cases();
+
+        // Protection : s’assurer qu’il y a assez de semestres disponibles
+        if (isset($semesterEnums[$startSemesterIndex], $semesterEnums[$startSemesterIndex + 1])) {
+            $semesterNames = [
+                $semesterEnums[$startSemesterIndex]->name,
+                $semesterEnums[$startSemesterIndex + 1]->name,
+            ];
+
+            $semesters = Semester::whereIn('name', $semesterNames)->get();
+
+            $level->semesters()->sync($semesters->pluck('id')->toArray());
+        }
+    }
 }

@@ -16,7 +16,13 @@ class AdminStudentController extends Controller
 
     public function index(Request $request): Response
     {
-        return Inertia::render('admin/student/index');
+        $students = Student::with(['actualLevel', 'actualLevel.year', 'actualLevel.level'])
+            ->orderByDesc('updated_at')
+            ->paginate(25);
+
+        return Inertia::render('admin/student/index', [
+            'students' => $students
+        ]);
     }
 
     public function create(Request $request)
@@ -26,8 +32,6 @@ class AdminStudentController extends Controller
 
     public function store(StudentRequest $request): RedirectResponse
     {
-        $user = $request->user();
-
         $student = Student::create([
             ...$request->validated(),
             'registration_token' => Str::random(10),
@@ -45,7 +49,8 @@ class AdminStudentController extends Controller
 
     public function show(Request $request, string $id): Response
     {
-        $student = Student::with('actualLevel')->findOrFail($id);
+        $student = Student::with(['actualLevel', 'actualLevel.year', 'actualLevel.level'])
+            ->findOrFail($id);
 
         return Inertia::render('admin/student/show', [
             'student' => $student
@@ -55,7 +60,8 @@ class AdminStudentController extends Controller
 
     public function edit(Request $request, string $id): Response
     {
-        $student = Student::with('actualLevel')->findOrFail($id);
+        $student = Student::with(['actualLevel', 'actualLevel.year', 'actualLevel.level'])
+            ->findOrFail($id);
 
         return Inertia::render('admin/student/edit', [
             'student' => $student
@@ -89,6 +95,5 @@ class AdminStudentController extends Controller
 
         return redirect()->route('#student.index')
             ->with('message', 'étudiant supprimé');
-
     }
 }

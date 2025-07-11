@@ -13,7 +13,13 @@ class AdminFacultyController extends Controller
 {
     public function index(): Response
     {
-        return Inertia::render('admin/faculty/index');
+        $faculties = Faculty::with(['departments'])
+            ->orderByDesc('updated_at')
+            ->paginate();
+
+        return Inertia::render('admin/faculty/index', [
+            'faculties' => $faculties,
+        ]);
     }
 
     public function create(): Response
