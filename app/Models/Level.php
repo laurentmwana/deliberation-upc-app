@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Level extends Model
@@ -18,6 +19,20 @@ class Level extends Model
     {
         return $this->belongsTo(Department::class);
     }
+
+
+    public function students(): HasManyThrough
+    {
+        return $this->hasManyThrough(
+            Student::class,
+            ActualLevel::class,
+            'level_id',
+            'id',
+            'id',
+            'student_id'
+        );
+    }
+
 
     public function courses(): HasMany
     {

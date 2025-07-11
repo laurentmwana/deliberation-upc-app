@@ -39,6 +39,7 @@ export interface LevelModel {
     orientation_id: number | null;
     orientation: OrientationModel | null;
     courses: CourseModel[];
+    students: StudentModel[];
     semesters: SemesterModel[];
     created_at: string;
     updated_at: string;
@@ -136,6 +137,7 @@ export interface HistoricLevelModel {
 
 export interface GradeModel {
     id: number;
+    score: number;
     level_id: number;
     year_id: number;
     student_id: number;

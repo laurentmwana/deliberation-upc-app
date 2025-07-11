@@ -89,5 +89,23 @@ class ApiDataSelectController extends Controller
         return response()->json($years);
     }
 
+    public function levelWithCourseAndStudents(): JsonResponse
+    {
+        $levels = Level::with([
+            'courses' => function ($query) {
+                $query->select('id', 'level_id', 'name', 'alias', 'semester_id')->distinct();
+            },
+            'courses.semester' => function ($query) {
+                $query->select('id', 'name');
+            },
+            'students' => function ($query) {
+                $query->select('students.id', 'name', 'firstname', 'gender')->distinct();
+            }
+        ])
+        ->orderByDesc('updated_at')
+        ->get(['id', 'name', 'alias']);
+
+        return response()->json($levels);
+    }
 
 }

@@ -34,4 +34,9 @@ class Grade extends Model
     {
         return $this->belongsTo(Level::class);
     }
+
+    public function year(): BelongsTo
+    {
+        return $this->belongsTo(Year::class);
+    }
 }
