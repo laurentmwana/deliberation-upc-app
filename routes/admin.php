@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\AdminStudentController;
 use App\Http\Controllers\Admin\AdminTeacherController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminYearController;
+use App\Http\Controllers\Excel\GradeExcelController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')
@@ -41,5 +42,17 @@ Route::prefix('admin')
             ->name('semester.index');
         Route::resource('user', AdminUserController::class);
         Route::resource('deliberation', AdminDeliberationController::class);
+
+
+        // EXCEL
+        Route::get('excel/grade', [GradeExcelController::class, 'index'])
+            ->name('grade.excel.index');
+
+        Route::post('excel/grade/import', [GradeExcelController::class, 'import'])
+            ->name('grade.excel.import');
+
+        Route::get('excel/grade/export', [GradeExcelController::class, 'export'])
+            ->name('grade.excel.export');
+        // END EXCEL
 
     });

@@ -117,7 +117,7 @@ export function AppSidebar() {
             items: [
                 {
                     title: 'Note',
-                    href: '#',
+                    href: route('#grade.excel.index'),
                     icon: File,
                 },
                 {
