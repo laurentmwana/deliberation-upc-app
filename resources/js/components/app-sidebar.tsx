@@ -8,6 +8,7 @@ import {
     Book,
     Calendar,
     ClipboardList,
+    File,
     GraduationCap,
     Home,
     Info,
@@ -100,6 +101,22 @@ export function AppSidebar() {
                     title: 'Utilisateur',
                     href: route('#user.index'),
                     icon: UserCog,
+                },
+            ],
+        },
+
+        {
+            title: 'Excel',
+            items: [
+                {
+                    title: 'Note',
+                    href: '#',
+                    icon: File,
+                },
+                {
+                    title: 'Etudiant',
+                    href: '#',
+                    icon: File,
                 },
             ],
         },
