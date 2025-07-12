@@ -150,3 +150,17 @@ export interface GradeModel {
     created_at: string;
     updated_at: string;
 }
+
+export interface DeliberationModel {
+    id: number;
+    description: string | null;
+    level_id: number;
+    year_id: number;
+    semester_id: number;
+    year: YearModel;
+    level: LevelModel;
+    semester: SemesterModel;
+    created_at: string;
+    created_at: string;
+    updated_at: string;
+}

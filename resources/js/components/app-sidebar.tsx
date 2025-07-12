@@ -8,6 +8,8 @@ import {
     Book,
     Calendar,
     ClipboardList,
+    Database,
+    File,
     GraduationCap,
     Home,
     Info,
@@ -90,6 +92,12 @@ export function AppSidebar() {
                     href: route('#student.index'),
                     icon: Users,
                 },
+
+                {
+                    title: 'Délibération',
+                    href: route('#deliberation.index'),
+                    icon: Database,
+                },
                 {
                     title: 'Résultats',
                     href: '#',
@@ -100,6 +108,22 @@ export function AppSidebar() {
                     title: 'Utilisateur',
                     href: route('#user.index'),
                     icon: UserCog,
+                },
+            ],
+        },
+
+        {
+            title: 'Excel',
+            items: [
+                {
+                    title: 'Note',
+                    href: route('#grade.excel.index'),
+                    icon: File,
+                },
+                {
+                    title: 'Etudiant',
+                    href: route('#student.excel.index'),
+                    icon: File,
                 },
             ],
         },

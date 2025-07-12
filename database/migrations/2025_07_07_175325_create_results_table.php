@@ -15,20 +15,12 @@ return new class extends Migration
     {
         Schema::create('results', function (Blueprint $table) {
             $table->id();
+            $table->json('data')->default("[]");
             $table->foreignId('student_id')
                     ->constrained()
                     ->cascadeOnDelete()
                     ->cascadeOnUpdate();
-            $table->foreignId('level_id')
-                    ->constrained()
-                    ->cascadeOnDelete()
-                    ->cascadeOnUpdate();
-            $table->foreignId('year_id')
-                    ->constrained()
-                    ->cascadeOnDelete()
-                    ->cascadeOnUpdate();
             $table->string('file');
-            $table->enum('semester', SemesterEnum::values());
             $table->float('percent');
             $table->timestamps();
             $table->softDeletes();
