@@ -36,7 +36,7 @@ export default function Welcome() {
                 </header>
 
                 <div className="flex w-full items-center justify-center opacity-100 transition-opacity duration-750 lg:grow starting:opacity-0">
-                    <main className="flex w-full max-w-[335px] flex-col-reverse lg:max-w-4xl lg:flex-row">
+                    <main className="flex w-full min-w-[335px] flex-col-reverse sm:max-w-4xl lg:flex-row">
                         <div className="flex-1 rounded-br-lg rounded-bl-lg border bg-card p-6 pb-12 text-[13px] leading-[20px] shadow-sm lg:rounded-tl-lg lg:rounded-br-none lg:p-20">
                             <h1 className="mb-1 text-2xl font-medium text-foreground">Système de Délibération UPC-LMD</h1>
                             <p className="mb-2 text-muted-foreground">

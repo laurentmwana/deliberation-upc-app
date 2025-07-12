@@ -8,11 +8,13 @@ import SettingsLayout from '@/layouts/settings/layout';
 export default function Appearance() {
     return (
         <AppLayout>
-            <Head title="Appearance settings" />
+            <Head title="Paramètres d'apparence" />
 
             <SettingsLayout>
                 <div className="space-y-6">
-                    <HeadingSmall title="Appearance settings">Update your account's appearance settings</HeadingSmall>
+                    <HeadingSmall title="Paramètres d'apparence">
+                        Mettez à jour les paramètres d'apparence de votre compte
+                    </HeadingSmall>
                     <AppearanceTabs />
                 </div>
             </SettingsLayout>
