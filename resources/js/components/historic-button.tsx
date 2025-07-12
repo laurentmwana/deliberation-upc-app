@@ -78,7 +78,7 @@ export const HistoryButton = () => {
                 </DropdownMenuTrigger>
 
                 <DropdownMenuContent align="start" className="w-80">
-                    <div className="text-muted-foreground px-2 py-1.5 text-xs font-medium">Historique récent</div>
+                    <div className="px-2 py-1.5 text-xs font-medium text-muted-foreground">Historique récent</div>
 
                     {history.length > 0 ? (
                         history.map((item, index) => (
@@ -89,13 +89,13 @@ export const HistoryButton = () => {
                             >
                                 <div className="flex min-w-0 flex-1 flex-col">
                                     <span className="truncate font-medium">{item.title}</span>
-                                    <span className="text-muted-foreground truncate text-xs">{item.path}</span>
+                                    <span className="truncate text-xs text-muted-foreground">{item.path}</span>
                                 </div>
-                                <span className="text-muted-foreground text-xs">{ago(item.created_at)}</span>
+                                <span className="text-xs text-muted-foreground">{ago(item.created_at)}</span>
                             </DropdownMenuItem>
                         ))
                     ) : (
-                        <div className="text-muted-foreground px-2 py-4 text-center text-sm">Aucun historique</div>
+                        <div className="px-2 py-4 text-center text-sm text-muted-foreground">Aucun historique</div>
                     )}
                 </DropdownMenuContent>
             </DropdownMenu>

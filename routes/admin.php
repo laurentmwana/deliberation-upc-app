@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\AdminTeacherController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminYearController;
 use App\Http\Controllers\Excel\GradeExcelController;
+use App\Http\Controllers\Excel\StudentExcelController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')
@@ -53,6 +54,16 @@ Route::prefix('admin')
 
         Route::get('excel/grade/export', [GradeExcelController::class, 'export'])
             ->name('grade.excel.export');
+
+
+        Route::get('excel/student', [StudentExcelController::class, 'index'])
+            ->name('student.excel.index');
+
+        Route::post('excel/student/import', [StudentExcelController::class, 'import'])
+            ->name('student.excel.import');
+
+        Route::get('excel/student/export', [StudentExcelController::class, 'export'])
+            ->name('student.excel.export');
         // END EXCEL
 
     });

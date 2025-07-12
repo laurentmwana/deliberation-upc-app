@@ -122,7 +122,7 @@ export function AppSidebar() {
                 },
                 {
                     title: 'Etudiant',
-                    href: '#',
+                    href: route('#student.excel.index'),
                     icon: File,
                 },
             ],
