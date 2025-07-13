@@ -164,3 +164,16 @@ export interface DeliberationModel {
     created_at: string;
     updated_at: string;
 }
+
+export interface ResultModel {
+    id: number;
+    decision: string;
+    deliberation_id: number;
+    data: Array;
+    deliberation: DeliberationModel;
+    student_id: number;
+    student: StudentModel;
+    percent: number;
+    created_at: string;
+    updated_at: string;
+}

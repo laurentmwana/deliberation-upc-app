@@ -20,7 +20,7 @@ class GradeExcelController extends Controller
     }
 
 
-    public function import(GradeExcelRequest $request)
+    public function import(GradeExcelReazquest $request)
     {
         $validated = $request->validated();
 

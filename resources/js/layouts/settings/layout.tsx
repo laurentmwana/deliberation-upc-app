@@ -25,7 +25,7 @@ const sidebarNavItems: NavItem[] = [
 ];
 
 export default function SettingsLayout({ children }: PropsWithChildren) {
-    // When server-side rendering, we only render the layout on the client...
+    // Lors du rendu côté serveur, on ne retourne rien
     if (typeof window === 'undefined') {
         return null;
     }
@@ -34,7 +34,7 @@ export default function SettingsLayout({ children }: PropsWithChildren) {
 
     return (
         <div className="px-4 py-6">
-            <Heading title="Settings">Manage your profile and account settings</Heading>
+            <Heading title="Paramètres">Gérez votre profil et vos paramètres de compte</Heading>
 
             <div className="flex flex-col space-y-8 lg:flex-row lg:space-y-0 lg:space-x-12">
                 <aside className="w-full max-w-xl lg:w-48">

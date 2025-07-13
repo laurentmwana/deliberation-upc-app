@@ -42,5 +42,7 @@ export interface UserModel {
     student: StudentModel;
     created_at: string;
     updated_at: string;
+    is_admin: boolean;
+    is_student: boolean;
     [key: string]: unknown; // This allows for additional properties...
 }
