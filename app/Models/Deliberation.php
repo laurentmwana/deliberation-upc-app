@@ -11,7 +11,7 @@ class Deliberation extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['level_id', 'year_id', 'semester_id', 'description'];
+    protected $fillable = ['level_id', 'year_id', 'semester_id', 'description', 'completed_at'];
 
     public function level(): BelongsTo
     {

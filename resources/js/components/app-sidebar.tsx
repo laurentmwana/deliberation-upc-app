@@ -100,7 +100,7 @@ export function AppSidebar() {
                 },
                 {
                     title: 'Résultats',
-                    href: '#',
+                    href: route('#result.index'),
                     icon: ScrollText,
                 },
 

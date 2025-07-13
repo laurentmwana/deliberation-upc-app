@@ -13,15 +13,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('results', function (Blueprint $table) {
+       Schema::create('results', function (Blueprint $table) {
             $table->id();
-            $table->json('data')->default("[]");
-            $table->foreignId('student_id')
-                    ->constrained()
-                    ->cascadeOnDelete()
-                    ->cascadeOnUpdate();
+            $table->json('data');
+            $table->foreignId('student_id')->constrained()->cascadeOnDelete();
             $table->string('file');
-            $table->float('percent');
+            $table->double('percent')->nullable();
+            $table->string('decision');
+            $table->boolean('has_missing_grades')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });

@@ -32,4 +32,8 @@ class Student extends Model
         return $this->hasMany(HistoricLevel::class);
     }
 
+    public function grades(): HasMany
+    {
+        return $this->hasMany(Grade::class);
+    }
 }

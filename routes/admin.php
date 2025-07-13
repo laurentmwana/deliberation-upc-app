@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AdminFacultyController;
 use App\Http\Controllers\Admin\AdminGradeController;
 use App\Http\Controllers\Admin\AdminLevelController;
 use App\Http\Controllers\Admin\AdminOrientationController;
+use App\Http\Controllers\Admin\AdminResultController;
 use App\Http\Controllers\Admin\AdminSemesterController;
 use App\Http\Controllers\Admin\AdminStudentController;
 use App\Http\Controllers\Admin\AdminTeacherController;
@@ -43,6 +44,12 @@ Route::prefix('admin')
             ->name('semester.index');
         Route::resource('user', AdminUserController::class);
         Route::resource('deliberation', AdminDeliberationController::class);
+
+        Route::get('result', [AdminResultController::class, 'index'])
+            ->name('result.index');
+
+        Route::post('result/published', [AdminResultController::class, 'published'])
+            ->name('result.published');
 
 
         // EXCEL
