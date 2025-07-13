@@ -1,40 +1,14 @@
-import AppearanceToggleDropdown from '@/components/appearance-dropdown';
+import { BaseLayout } from '@/layouts/base-layout';
 import type { SharedData } from '@/types';
-import { Head, Link, usePage } from '@inertiajs/react';
+import { Head, usePage } from '@inertiajs/react';
 
 export default function Welcome() {
     const { auth } = usePage<SharedData>().props;
 
     return (
-        <>
-            <Head title="Système de Délibération UPC - LMD">
-                <link rel="preconnect" href="https://fonts.bunny.net" />
-                <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
-            </Head>
-            <div className="flex min-h-screen flex-col items-center bg-background p-6 text-foreground lg:justify-center lg:p-8">
-                <header className="mb-6 w-full max-w-[335px] text-sm not-has-[nav]:hidden lg:max-w-4xl">
-                    <nav className="flex items-center justify-end gap-4">
-                        <AppearanceToggleDropdown />
-                        {auth.user ? (
-                            <Link
-                                href={route('dashboard')}
-                                className="inline-block rounded-sm border border-border px-5 py-1.5 text-sm leading-normal text-foreground hover:border-border/70 hover:bg-accent"
-                            >
-                                Tableau de bord
-                            </Link>
-                        ) : (
-                            <>
-                                <Link
-                                    href={route('login')}
-                                    className="inline-block rounded-sm border border-transparent px-5 py-1.5 text-sm leading-normal text-foreground hover:border-border hover:bg-accent"
-                                >
-                                    Connexion
-                                </Link>
-                            </>
-                        )}
-                    </nav>
-                </header>
-
+        <BaseLayout>
+            <Head title="Système de Délibération UPC - LMD" />
+            <div>
                 <div className="flex w-full items-center justify-center opacity-100 transition-opacity duration-750 lg:grow starting:opacity-0">
                     <main className="flex w-full min-w-[335px] flex-col-reverse sm:max-w-4xl lg:flex-row">
                         <div className="flex-1 rounded-br-lg rounded-bl-lg border bg-card p-6 pb-12 text-[13px] leading-[20px] shadow-sm lg:rounded-tl-lg lg:rounded-br-none lg:p-20">
@@ -184,6 +158,6 @@ export default function Welcome() {
 
                 <div className="hidden h-14.5 lg:block"></div>
             </div>
-        </>
+        </BaseLayout>
     );
 }

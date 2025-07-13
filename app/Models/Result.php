@@ -26,4 +26,9 @@ class Result extends Model
     {
         return $this->belongsTo(Year::class);
     }
+
+    public function deliberation(): BelongsTo
+    {
+        return $this->belongsTo(Deliberation::class);
+    }
 }
