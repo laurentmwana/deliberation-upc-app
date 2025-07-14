@@ -80,9 +80,6 @@ export const BaseLayout: React.FC<BaseLayoutProps> = ({ children }) => {
 
             <footer className="mx-auto mt-8 w-full max-w-4xl border-t border-border pt-6">
                 <div className="text-center text-xs text-muted-foreground">
-                    <p className="mb-1">
-                        Développé par <span className="font-medium text-foreground">Labeya</span>
-                    </p>
                     <p className="mb-1">Dans le cadre de l'examen de Génie Logiciel</p>
                     <p>
                         Sous la direction du <span className="font-medium text-foreground">Professeur KUYUSA</span>

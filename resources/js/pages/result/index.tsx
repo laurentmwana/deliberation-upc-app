@@ -1,4 +1,5 @@
 import { Heading } from '@/components/heading';
+import { ToBack } from '@/components/to-back';
 import { FilterInput } from '@/components/ui/filter-input';
 import { Pagination } from '@/components/ui/pagination';
 import { BaseLayout } from '@/layouts/base-layout';
@@ -21,6 +22,9 @@ export default function Index() {
             <Head title="Mes résultats" />
 
             <div className="py-12">
+                <div className="mb-4">
+                    <ToBack url={route('home')} />
+                </div>
                 <Heading title="Mes résultats">Voici les résultats de l'étudiant.</Heading>
 
                 <div className="mb-4">
