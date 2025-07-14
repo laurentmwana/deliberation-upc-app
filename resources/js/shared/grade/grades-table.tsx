@@ -46,7 +46,7 @@ export const GradesTable: React.FC<GradesTableProps> = ({ grades }) => {
                         <TableCell>{grade.course?.name ?? '-'}</TableCell>
                         <TableCell>{grade.level?.name ?? '-'}</TableCell>
                         <TableCell>{grade.year?.name ?? '-'}</TableCell>
-                        <TableCell>{grade.score}</TableCell>
+                        <TableCell>{grade.score.toFixed(1)}</TableCell>
                         <TableCell>{ago(grade.created_at)}</TableCell>
                         <TableCell>
                             <div className="flex items-center gap-2">
