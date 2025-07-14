@@ -8,7 +8,7 @@ export default function Welcome() {
     return (
         <BaseLayout>
             <Head title="Système de Délibération UPC - LMD" />
-            <div>
+            <div className="py-12">
                 <div className="flex w-full items-center justify-center opacity-100 transition-opacity duration-750 lg:grow starting:opacity-0">
                     <main className="flex w-full min-w-[335px] flex-col-reverse sm:max-w-4xl lg:flex-row">
                         <div className="flex-1 rounded-br-lg rounded-bl-lg border bg-card p-6 pb-12 text-[13px] leading-[20px] shadow-sm lg:rounded-tl-lg lg:rounded-br-none lg:p-20">
@@ -87,22 +87,7 @@ export default function Welcome() {
                     </main>
                 </div>
 
-                <footer className="mt-8 w-full max-w-4xl border-t border-border pt-6">
-                    <div className="text-center text-xs text-muted-foreground">
-                        <p className="mb-1">
-                            Développé par <span className="font-medium text-foreground">Labeya</span>
-                        </p>
-                        <p className="mb-1">Dans le cadre de l'examen de Génie Logiciel</p>
-                        <p>
-                            Sous la direction du <span className="font-medium text-foreground">Professeur KUYUSA</span>
-                        </p>
-                        <div className="mt-4 border-t border-border pt-4">
-                            <p>&copy; {new Date().getFullYear()} - Université Protestante au Congo</p>
-                        </div>
-                    </div>
-                </footer>
-
-                <div className="hidden h-14.5 lg:block"></div>
+               
             </div>
         </BaseLayout>
     );
