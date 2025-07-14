@@ -1,5 +1,6 @@
 import { Heading } from '@/components/heading';
 import { Button } from '@/components/ui/button';
+import { FilterInput } from '@/components/ui/filter-input';
 import { Pagination } from '@/components/ui/pagination';
 import AppLayout from '@/layouts/app-layout';
 import { DepartmentsTable } from '@/shared/department/departments-table';
@@ -22,7 +23,15 @@ export default function Index() {
             <div className="container-sidebar">
                 <Heading title="Départements académiques">Liste complète des départements et filières de l'institution.</Heading>
                 <div className="mb-4 flex items-center justify-between">
-                    <div>{/* filter */}</div>
+                    <FilterInput
+                        availableSorts={[
+                            { label: 'Nom', value: 'name' },
+                            { label: 'Alias', value: 'alias' },
+                            { label: 'Date de création', value: 'created_at' },
+                            { label: 'Mise à jour', value: 'updated_at' },
+                        ]}
+                        url={route('#department.index')}
+                    />
                     <Button variant="outline" size="sm" asChild>
                         <Link href={route('#department.create')}>
                             <Plus size={15} />
