@@ -2,6 +2,7 @@ import { Heading } from '@/components/heading';
 import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import AppLayout from '@/layouts/app-layout';
 import { ago } from '@/lib/date-time';
+import { CourseDetail } from '@/shared/course/course-details';
 import { SharedData } from '@/types';
 import { CourseModel } from '@/types/model';
 import { Head, usePage } from '@inertiajs/react';
@@ -21,12 +22,7 @@ export default function Show() {
                     Voici les informations détaillées concernant le cours <strong>{course.name}</strong>.
                 </Heading>
 
-                <Card>
-                    <CardHeader>
-                        <CardTitle>{course.name}</CardTitle>
-                        <CardDescription>Créé {ago(course.created_at, { fullText: true })}.</CardDescription>
-                    </CardHeader>
-                </Card>
+                <CourseDetail course={course} />
             </div>
         </AppLayout>
     );

@@ -1,7 +1,6 @@
 import { Heading } from '@/components/heading';
-import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import AppLayout from '@/layouts/app-layout';
-import { ago } from '@/lib/date-time';
+import { FacultyDetail } from '@/shared/faculty/faculty-details';
 import { SharedData } from '@/types';
 import { FacultyModel } from '@/types/model';
 import { Head, usePage } from '@inertiajs/react';
@@ -19,12 +18,7 @@ export default function Show() {
             <div className="container-sidebar">
                 <Heading title={`Faculté ${faculty.name}`}>Consultez les informations détaillées de cette faculté académique.</Heading>
 
-                <Card>
-                    <CardHeader>
-                        <CardTitle>{faculty.name}</CardTitle>
-                        <CardDescription>Créée il y a {ago(faculty.created_at, { fullText: true })}</CardDescription>
-                    </CardHeader>
-                </Card>
+                <FacultyDetail faculty={faculty} />
             </div>
         </AppLayout>
     );

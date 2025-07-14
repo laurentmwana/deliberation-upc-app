@@ -46,6 +46,9 @@ class HandleInertiaRequests extends Middleware
             ...parent::share($request),
             'name' => config('app.name'),
             'quote' => ['message' => trim($message), 'author' => trim($author)],
+            'flash' => [
+                'success' => $request->session()->get('success'),
+            ],
             'auth' => [
                 'user' => $this->getUser($user)
             ],
@@ -63,7 +66,7 @@ class HandleInertiaRequests extends Middleware
 
         return [
             ...$user->toArray(),
-            'is_admin' => isAdmin($user->role), 
+            'is_admin' => isAdmin($user->role),
             'is_student' => isStudent($user->role)
         ];
     }

@@ -14,31 +14,31 @@ export const BaseLayout: React.FC<BaseLayoutProps> = ({ children }) => {
                 <nav className="flex items-center justify-end gap-4">
                     <AppearanceToggleDropdown />
                     {auth.user ? (
-                        auth.user.is_admin ? (
-                            <Link
-                                href={route('dashboard')}
-                                className="inline-block rounded-sm border border-border px-5 py-1.5 text-sm leading-normal text-foreground hover:border-border/70 hover:bg-accent"
-                            >
-                                Tableau de bord
-                            </Link>
-                        ) : (
-                            <>
+                        <>
+                            {auth.user.is_admin ? (
+                                <Link
+                                    href={route('dashboard')}
+                                    className="inline-block rounded-sm border border-border px-5 py-1.5 text-sm leading-normal text-foreground hover:border-border/70 hover:bg-accent"
+                                >
+                                    Tableau de bord
+                                </Link>
+                            ) : (
                                 <Link
                                     href={route('result.index')}
                                     className="inline-block rounded-sm border border-border px-5 py-1.5 text-sm leading-normal text-foreground hover:border-border/70 hover:bg-accent"
                                 >
                                     Résultats
                                 </Link>
-                                <Link
-                                    method="post"
-                                    as="button"
-                                    href={route('logout')}
-                                    className="inline-block rounded-sm border border-border px-5 py-1.5 text-sm leading-normal text-foreground hover:border-border/70 hover:bg-accent"
-                                >
-                                    Déconnexion
-                                </Link>
-                            </>
-                        )
+                            )}
+                            <Link
+                                method="post"
+                                as="button"
+                                href={route('logout')}
+                                className="inline-block rounded-sm border border-border px-5 py-1.5 text-sm leading-normal text-foreground hover:border-border/70 hover:bg-accent"
+                            >
+                                Déconnexion
+                            </Link>
+                        </>
                     ) : (
                         <Link
                             href={route('login')}

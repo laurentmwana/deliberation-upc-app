@@ -7,6 +7,7 @@ import {
 } from '@/components/ui/card';
 import AppLayout from '@/layouts/app-layout';
 import { ago } from '@/lib/date-time';
+import { LevelDetail } from '@/shared/level/level-details';
 import { SharedData } from '@/types';
 import { LevelModel } from '@/types/model';
 import { Head, usePage } from '@inertiajs/react';
@@ -26,14 +27,7 @@ export default function Show() {
                     Voici les informations détaillées concernant la promotion <strong>{level.name}</strong>.
                 </Heading>
 
-                <Card>
-                    <CardHeader>
-                        <CardTitle>{level.name}</CardTitle>
-                        <CardDescription>
-                            Créée {ago(level.created_at, { fullText: true })}.
-                        </CardDescription>
-                    </CardHeader>
-                </Card>
+                <LevelDetail level={level} />
             </div>
         </AppLayout>
     );

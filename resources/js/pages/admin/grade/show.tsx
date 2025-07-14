@@ -1,7 +1,6 @@
 import { Heading } from '@/components/heading';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import AppLayout from '@/layouts/app-layout';
-import { ago } from '@/lib/date-time';
+import { GradeDetail } from '@/shared/grade/grade-details';
 import { SharedData } from '@/types';
 import { GradeModel } from '@/types/model';
 import { Head, usePage } from '@inertiajs/react';
@@ -19,26 +18,7 @@ export default function Show() {
             <div className="container-sidebar">
                 <Heading title={`Détails de la note`}>Informations détaillées sur la note attribuée.</Heading>
 
-                <Card>
-                    <CardHeader>
-                        <CardTitle>Score : {grade.score}</CardTitle>
-                        <CardDescription>Note enregistrée {ago(grade.created_at, { fullText: true })}</CardDescription>
-                    </CardHeader>
-                    <CardContent className="space-y-3">
-                        <p className="text-sm">
-                            <strong>Étudiant :</strong> {grade.student?.name} {grade.student?.firstname}
-                        </p>
-                        <p className="text-sm">
-                            <strong>Cours :</strong> {grade.course?.name}
-                        </p>
-                        <p className="text-sm">
-                            <strong>Année académique :</strong> {grade.year?.name}
-                        </p>
-                        <p className="text-sm">
-                            <strong>Promotion :</strong> {grade.level?.name}
-                        </p>
-                    </CardContent>
-                </Card>
+                <GradeDetail grade={grade} />
             </div>
         </AppLayout>
     );

@@ -1,7 +1,6 @@
 import { Heading } from '@/components/heading';
-import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import AppLayout from '@/layouts/app-layout';
-import { ago } from '@/lib/date-time';
+import { OrientationDetail } from '@/shared/orientation/orientation-details';
 import { SharedData } from '@/types';
 import { OrientationModel } from '@/types/model';
 import { Head, usePage } from '@inertiajs/react';
@@ -19,12 +18,7 @@ export default function Show() {
             <div className="container-sidebar">
                 <Heading title="Détails de l'orientation">Informations détaillées de l'orientation académique.</Heading>
 
-                <Card>
-                    <CardHeader>
-                        <CardTitle>{orientation.name}</CardTitle>
-                        <CardDescription>Créée {ago(orientation.created_at, { fullText: true })}</CardDescription>
-                    </CardHeader>
-                </Card>
+                <OrientationDetail orientation={orientation} />
             </div>
         </AppLayout>
     );

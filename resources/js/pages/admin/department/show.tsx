@@ -1,7 +1,6 @@
 import { Heading } from '@/components/heading';
-import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import AppLayout from '@/layouts/app-layout';
-import { ago } from '@/lib/date-time';
+import { DepartmentDetail } from '@/shared/department/department-details';
 import { SharedData } from '@/types';
 import { DepartmentModel } from '@/types/model';
 import { Head, usePage } from '@inertiajs/react';
@@ -19,12 +18,7 @@ export default function Show() {
             <div className="container-sidebar">
                 <Heading title={`Informations détaillées`}>Informations détaillées du département académique.</Heading>
 
-                <Card>
-                    <CardHeader>
-                        <CardTitle>{department.name}</CardTitle>
-                        <CardDescription>Créé {ago(department.created_at, { fullText: true })}</CardDescription>
-                    </CardHeader>
-                </Card>
+                <DepartmentDetail department={department} />
             </div>
         </AppLayout>
     );
