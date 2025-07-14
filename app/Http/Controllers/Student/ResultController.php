@@ -5,16 +5,42 @@ namespace App\Http\Controllers\Student;
 use App\Http\Controllers\Controller;
 use App\Models\Result;
 use App\Models\Student;
+use App\Services\SearchableService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
+use Inertia\Response;
+use Spatie\QueryBuilder\QueryBuilder;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class ResultController extends Controller
 {
-    public function index(Request $request)
+    private const FIELDS = [
+        'percent',
+        'decision',
+        'has_missing_grades',
+        'data',
+        'file',
+        'created_at',
+    ];
+
+    private const FIELDS_RELATIONS = [
+        'deliberation.year' => ['name', 'is_closed'],
+        'deliberation.level' => ['name', 'alias'],
+        'deliberation.semester' => ['name', 'full_name'],
+    ];
+
+    private const COLUMNS_SORT = [
+        'percent',
+        'decision',
+        'has_missing_grades',
+        'created_at',
+        'updated_at',
+    ];
+
+    public function index(Request $request, SearchableService $searchable): Response
     {
-         $user = $request->user();
+        $user = $request->user();
 
         $student = Student::where('user_id', $user->id)->first();
 
@@ -22,13 +48,25 @@ class ResultController extends Controller
             abort(404, "Ce compte n'est pas associé à un étudiant.");
         }
 
-        $builder = $student->results()->with(['deliberation', 'deliberation.level', 'deliberation.year', 'deliberation.semester']);
+        $builder = $searchable->handle(
+            $student->results()->getQuery()
+                ->with([
+                    'deliberation.year',
+                    'deliberation.level',
+                    'deliberation.semester'
+                ]),
+            self::FIELDS,
+            self::FIELDS_RELATIONS
+        );
 
-        $results = $builder->paginate();
+        $results = QueryBuilder::for($builder)
+            ->allowedSorts(self::COLUMNS_SORT)
+            ->defaultSort('-updated_at')
+            ->paginate();
 
         return Inertia::render('result/index', [
             'results' => $results,
-            'student' => $student
+            'student' => $student,
         ]);
     }
 

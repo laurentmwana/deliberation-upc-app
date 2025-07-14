@@ -4,7 +4,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { ago } from '@/lib/date-time';
 import { excerpt } from '@/lib/utils';
 import { ResultModel } from '@/types/model';
-import { Download, Eye, FileText } from 'lucide-react';
+import { Download, FileText } from 'lucide-react';
 import React from 'react';
 
 type ResultTableProps = {
@@ -51,10 +51,6 @@ export const ResultTable: React.FC<ResultTableProps> = ({ results }) => {
                         <TableCell>{ago(r.created_at)}</TableCell>
                         <TableCell>
                             <div className="flex flex-wrap items-center gap-2">
-                                <Button variant="secondary" size="sm">
-                                    <Eye size={14} className="mr-1" />
-                                    Voir
-                                </Button>
                                 <Button variant="secondary" size="sm" asChild>
                                     <a href={route('result.download', { id: r.id })}>
                                         <Download size={14} className="mr-1" />

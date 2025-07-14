@@ -1,4 +1,5 @@
 import { Heading } from '@/components/heading';
+import { FilterInput } from '@/components/ui/filter-input';
 import { Pagination } from '@/components/ui/pagination';
 import { BaseLayout } from '@/layouts/base-layout';
 import { ResultTable } from '@/shared/result/results-table';
@@ -21,6 +22,16 @@ export default function Index() {
 
             <div className="py-12">
                 <Heading title="Mes résultats">Voici les résultats de l'étudiant.</Heading>
+
+                <div className="mb-4">
+                    <FilterInput
+                        availableSorts={[
+                            { label: 'Date de création', value: 'created_at' },
+                            { label: 'Mise à jour', value: 'updated_at' },
+                        ]}
+                        url={route('result.index')}
+                    />
+                </div>
 
                 <div>
                     <ResultTable results={results?.data ?? []} />
