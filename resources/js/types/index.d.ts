@@ -29,7 +29,15 @@ export interface SharedData {
     auth: Auth;
     ziggy: Config & { location: string };
     sidebarOpen: boolean;
+    flash: FlashMessage;
     [key: string]: unknown;
+}
+
+export interface FlashMessage {
+    success: string | null;
+    danger: string | null;
+    warning: string | null;
+    danger: string | null;
 }
 
 export interface UserModel {

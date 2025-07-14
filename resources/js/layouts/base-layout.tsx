@@ -1,4 +1,5 @@
 import AppearanceToggleDropdown from '@/components/appearance-dropdown';
+import { ToastMessage } from '@/components/toast-message';
 import { SharedData } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
 import React, { PropsWithChildren } from 'react';
@@ -50,6 +51,7 @@ export const BaseLayout: React.FC<BaseLayoutProps> = ({ children }) => {
                 </nav>
             </header>
 
+            <ToastMessage />
             <main className="container">{children}</main>
         </div>
     );
