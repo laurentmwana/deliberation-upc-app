@@ -4,21 +4,43 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Year;
+use App\Services\SearchableService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class AdminYearController extends Controller
 {
-    public function index(Request $request)
+private const FIELDS = [
+        'name',
+        'alias',
+        'created_at',
+    ];
+
+    private const COLUMNS_SORT = [
+        'name',
+        'alias',
+        'is_closed',
+        'created_at',
+        'updated_at',
+    ];
+
+    public function index(SearchableService $searchable): Response
     {
-        $years = Year::orderByDesc('updated_at')
-            ->orderBy('is_closed')
+        $builder = $searchable->handle(
+            Year::query(),
+            self::FIELDS,
+        );
+
+        $years = QueryBuilder::for($builder)
+            ->allowedSorts(self::COLUMNS_SORT)
+            ->defaultSort('-updated_at')
             ->paginate();
 
         return Inertia::render('admin/year/index', [
-            'years' => $years
+            'years' => $years,
         ]);
     }
 

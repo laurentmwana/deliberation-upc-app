@@ -1,5 +1,6 @@
 import { Heading } from '@/components/heading';
 import { Button } from '@/components/ui/button';
+import { FilterInput } from '@/components/ui/filter-input';
 import { Pagination } from '@/components/ui/pagination';
 import AppLayout from '@/layouts/app-layout';
 import { DeliberationsTable } from '@/shared/deliberation/deliberations-table';
@@ -25,7 +26,14 @@ export default function Index() {
                 </Heading>
 
                 <div className="flex items-center justify-between">
-                    <div>{/* Un filtre ou une recherche peut être ajouté ici plus tard */}</div>
+                    <FilterInput
+                        availableSorts={[
+                            { label: 'Complète', value: 'completed_at' },
+                            { label: 'Date de création', value: 'created_at' },
+                            { label: 'Mise à jour', value: 'updated_at' },
+                        ]}
+                        url={route('#deliberation.index')}
+                    />
                     <Button variant="outline" size="sm" asChild>
                         <Link href={route('#deliberation.create')}>
                             <Plus size={15} className="mr-1" />

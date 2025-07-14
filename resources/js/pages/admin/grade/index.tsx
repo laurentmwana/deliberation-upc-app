@@ -1,5 +1,6 @@
 import { Heading } from '@/components/heading';
 import { Button } from '@/components/ui/button';
+import { FilterInput } from '@/components/ui/filter-input';
 import { Pagination } from '@/components/ui/pagination';
 import AppLayout from '@/layouts/app-layout';
 import { GradesTable } from '@/shared/grade/grades-table';
@@ -22,7 +23,13 @@ export default function Index() {
             <div className="container-sidebar">
                 <Heading title="Notes">Liste complète des notes enregistrées.</Heading>
                 <div className="mb-4 flex items-center justify-between">
-                    <div>{/* filtre éventuel */}</div>
+                    <FilterInput
+                        availableSorts={[
+                            { label: 'Note', value: 'score' },
+                            { label: 'Mise à jour', value: 'updated_at' },
+                        ]}
+                        url={route('#grade.index')}
+                    />
                     <Button variant="outline" size="sm" asChild>
                         <Link href={route('#grade.create')}>
                             <Plus size={15} />

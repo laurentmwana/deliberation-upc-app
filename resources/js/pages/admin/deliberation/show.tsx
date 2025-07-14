@@ -1,7 +1,6 @@
 import { Heading } from '@/components/heading';
-import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import AppLayout from '@/layouts/app-layout';
-import { ago } from '@/lib/date-time';
+import { DeliberationDetail } from '@/shared/deliberation/deliberation-details';
 import { SharedData } from '@/types';
 import { DeliberationModel } from '@/types/model';
 import { Head, usePage } from '@inertiajs/react';
@@ -25,14 +24,7 @@ export default function Show() {
                     .
                 </Heading>
 
-                <Card>
-                    <CardHeader>
-                        <CardTitle>
-                            Délibération {deliberation.level.name} {deliberation.year.name}
-                        </CardTitle>
-                        <CardDescription>Créée {ago(deliberation.created_at, { fullText: true })}.</CardDescription>
-                    </CardHeader>
-                </Card>
+                <DeliberationDetail deliberation={deliberation} />
             </div>
         </AppLayout>
     );

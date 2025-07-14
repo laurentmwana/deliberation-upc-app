@@ -2,6 +2,7 @@ import { Heading } from '@/components/heading';
 import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import AppLayout from '@/layouts/app-layout';
 import { ago } from '@/lib/date-time';
+import { UserDetail } from '@/shared/user/user-details';
 import { SharedData, UserModel } from '@/types';
 import { Head, usePage } from '@inertiajs/react';
 
@@ -18,12 +19,7 @@ export default function ShowUser() {
             <div className="container-sidebar">
                 <Heading title={`Utilisateur ${user.name}`}>Consultez les informations détaillées de cet utilisateur.</Heading>
 
-                <Card>
-                    <CardHeader>
-                        <CardTitle>{user.name}</CardTitle>
-                        <CardDescription>Créé il y a {ago(user.created_at, { fullText: true })}</CardDescription>
-                    </CardHeader>
-                </Card>
+                <UserDetail user={user} />
             </div>
         </AppLayout>
     );

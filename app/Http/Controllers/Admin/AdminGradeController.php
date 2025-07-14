@@ -5,17 +5,44 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GradeRequest;
 use App\Models\Grade;
+use App\Services\SearchableService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class AdminGradeController extends Controller
 {
-    public function index(): Response
+  private const FIELDS = [
+        'score',
+        'created_at',
+        'updated_at',
+    ];
+
+    private const FIELDS_RELATIONS = [
+        'student' => ['name', 'firstname', 'registration_token', 'gender'],
+        'course' => ['name', 'alias'],
+        'level' => ['name', 'alias'],
+        'year' => ['name', 'is_closed'],
+    ];
+
+    private const COLUMNS_SORT = [
+        'score',
+        'created_at',
+        'updated_at',
+    ];
+
+    public function index(SearchableService $searchable): Response
     {
-        $grades = Grade::with(['level', 'student', 'course', 'year'])
-            ->orderByDesc('updated_at')
+        $builder = $searchable->handle(
+            Grade::query()->with(['level', 'student', 'course', 'year']),
+            self::FIELDS,
+            self::FIELDS_RELATIONS
+        );
+
+        $grades = QueryBuilder::for($builder)
+            ->allowedSorts(self::COLUMNS_SORT)
             ->paginate();
 
         return Inertia::render('admin/grade/index', [

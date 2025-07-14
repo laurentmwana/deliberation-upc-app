@@ -17,12 +17,15 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::get('dashboard', DashboardController::class)->name('dashboard');
 });
 
-Route::get('result', [ResultController::class, 'index'])
-    ->name('result.index');
+Route::middleware(['auth', 'verified', 'student'])
+    ->group(function () {
+        Route::get('result', [ResultController::class, 'index'])
+            ->name('result.index');
 
-Route::get('download/result/{id}', [ResultController::class, 'download'])
-    ->name('result.download');
-
+        Route::get('download/result/{id}', [ResultController::class, 'download'])
+            ->name('result.download');
+    });
+    
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
 require __DIR__.'/entrypoint.php';

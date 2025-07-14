@@ -8,7 +8,7 @@ export default function Welcome() {
     return (
         <BaseLayout>
             <Head title="Système de Délibération UPC - LMD" />
-            <div>
+            <div className="py-12">
                 <div className="flex w-full items-center justify-center opacity-100 transition-opacity duration-750 lg:grow starting:opacity-0">
                     <main className="flex w-full min-w-[335px] flex-col-reverse sm:max-w-4xl lg:flex-row">
                         <div className="flex-1 rounded-br-lg rounded-bl-lg border bg-card p-6 pb-12 text-[13px] leading-[20px] shadow-sm lg:rounded-tl-lg lg:rounded-br-none lg:p-20">
@@ -27,26 +27,9 @@ export default function Welcome() {
                                     </span>
                                     <span>
                                         Gestion des
-                                        <a
-                                            href="#"
-                                            className="ml-1 inline-flex items-center space-x-1 font-medium text-primary underline underline-offset-4 hover:text-primary/80"
-                                        >
+                                        <span className="ml-1 inline-flex items-center space-x-1 font-medium text-primary hover:text-primary/80">
                                             <span>étudiants et promotions</span>
-                                            <svg
-                                                width={10}
-                                                height={11}
-                                                viewBox="0 0 10 11"
-                                                fill="none"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                className="h-2.5 w-2.5"
-                                            >
-                                                <path
-                                                    d="M7.70833 6.95834V2.79167H3.54167M2.5 8L7.5 3.00001"
-                                                    stroke="currentColor"
-                                                    strokeLinecap="square"
-                                                />
-                                            </svg>
-                                        </a>
+                                        </span>
                                     </span>
                                 </li>
                                 <li className="relative flex items-center gap-4 py-2 before:absolute before:top-0 before:bottom-0 before:left-[0.4rem] before:border-l before:border-border">
@@ -57,26 +40,9 @@ export default function Welcome() {
                                     </span>
                                     <span>
                                         Calcul et validation des
-                                        <a
-                                            href="#"
-                                            className="ml-1 inline-flex items-center space-x-1 font-medium text-primary underline underline-offset-4 hover:text-primary/80"
-                                        >
+                                        <span className="ml-1 inline-flex items-center space-x-1 font-medium text-primary hover:text-primary/80">
                                             <span>notes et crédits</span>
-                                            <svg
-                                                width={10}
-                                                height={11}
-                                                viewBox="0 0 10 11"
-                                                fill="none"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                className="h-2.5 w-2.5"
-                                            >
-                                                <path
-                                                    d="M7.70833 6.95834V2.79167H3.54167M2.5 8L7.5 3.00001"
-                                                    stroke="currentColor"
-                                                    strokeLinecap="square"
-                                                />
-                                            </svg>
-                                        </a>
+                                        </span>
                                     </span>
                                 </li>
                                 <li className="relative flex items-center gap-4 py-2 before:absolute before:top-0 before:bottom-1/2 before:left-[0.4rem] before:border-l before:border-border">
@@ -87,26 +53,9 @@ export default function Welcome() {
                                     </span>
                                     <span>
                                         Génération des
-                                        <a
-                                            href="#"
-                                            className="ml-1 inline-flex items-center space-x-1 font-medium text-primary underline underline-offset-4 hover:text-primary/80"
-                                        >
+                                        <span className="ml-1 inline-flex items-center space-x-1 font-medium text-primary hover:text-primary/80">
                                             <span>coupons</span>
-                                            <svg
-                                                width={10}
-                                                height={11}
-                                                viewBox="0 0 10 11"
-                                                fill="none"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                className="h-2.5 w-2.5"
-                                            >
-                                                <path
-                                                    d="M7.70833 6.95834V2.79167H3.54167M2.5 8L7.5 3.00001"
-                                                    stroke="currentColor"
-                                                    strokeLinecap="square"
-                                                />
-                                            </svg>
-                                        </a>
+                                        </span>
                                     </span>
                                 </li>
                             </ul>
@@ -138,25 +87,7 @@ export default function Welcome() {
                     </main>
                 </div>
 
-                <footer className="mt-8 w-full max-w-4xl border-t border-border pt-6">
-                    <div className="text-center text-xs text-muted-foreground">
-                        <p className="mb-2">
-                            <strong className="text-foreground">Système de Délibération LMD</strong>
-                        </p>
-                        <p className="mb-1">
-                            Développé par <span className="font-medium text-foreground">[Votre Nom]</span>
-                        </p>
-                        <p className="mb-1">Dans le cadre de l'examen de Génie Logiciel</p>
-                        <p>
-                            Sous la direction du <span className="font-medium text-foreground">Professeur KuYUSA</span>
-                        </p>
-                        <div className="mt-4 border-t border-border pt-4">
-                            <p>&copy; {new Date().getFullYear()} - Université Protestante au Congo</p>
-                        </div>
-                    </div>
-                </footer>
-
-                <div className="hidden h-14.5 lg:block"></div>
+               
             </div>
         </BaseLayout>
     );

@@ -1,5 +1,6 @@
 import { Heading } from '@/components/heading';
 import { Button } from '@/components/ui/button';
+import { FilterInput } from '@/components/ui/filter-input';
 import { Pagination } from '@/components/ui/pagination';
 import AppLayout from '@/layouts/app-layout';
 import { OrientationsTable } from '@/shared/orientation/orientations-table';
@@ -23,7 +24,13 @@ export default function Index() {
                 <Heading title="Orientations académiques">Liste complète des orientations par département.</Heading>
 
                 <div className="mb-4 flex items-center justify-between">
-                    <div>{/* filtre ici si besoin */}</div>
+                    <FilterInput
+                        availableSorts={[
+                            { label: 'Nom', value: 'name' },
+                            { label: 'Mise à jour', value: 'updated_at' },
+                        ]}
+                        url={route('#level.index')}
+                    />
                     <Button variant="outline" size="sm" asChild>
                         <Link href={route('#orientation.create')}>
                             <Plus size={15} />

@@ -5,16 +5,41 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FacultyRequest;
 use App\Models\Faculty;
+use App\Services\SearchableService;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class AdminFacultyController extends Controller
 {
-    public function index(): Response
+
+    private const FIELDS = [
+        'name',
+        'created_at',
+        'updated_at',
+    ];
+
+    private const FIELDS_RELATIONS = [
+        'departments' => ['name', 'alias'],
+    ];
+
+    private const COLUMNS_SORT = [
+        'name',
+        'created_at',
+        'updated_at',
+    ];
+
+    public function index(SearchableService $searchable): Response
     {
-        $faculties = Faculty::with(['departments'])
-            ->orderByDesc('updated_at')
+        $builder = $searchable->handle(
+            Faculty::query()->with(['departments']),
+            self::FIELDS,
+            self::FIELDS_RELATIONS
+        );
+
+        $faculties = QueryBuilder::for($builder)
+            ->allowedSorts(self::COLUMNS_SORT)
             ->paginate();
 
         return Inertia::render('admin/faculty/index', [

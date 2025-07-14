@@ -1,5 +1,6 @@
 import { Heading } from '@/components/heading';
 import { Button } from '@/components/ui/button';
+import { FilterInput } from '@/components/ui/filter-input';
 import { Pagination } from '@/components/ui/pagination';
 import AppLayout from '@/layouts/app-layout';
 import { LevelsTable } from '@/shared/level/levels-table';
@@ -23,7 +24,14 @@ export default function Index() {
                 <Heading title="Promotions">Liste complète des promotions académiques disponibles.</Heading>
 
                 <div className="flex items-center justify-between">
-                    <div>{/* Ajoute ici ton filtre plus tard */}</div>
+                    <FilterInput
+                        availableSorts={[
+                            { label: 'Nom', value: 'name' },
+                            { label: 'Alias', value: 'alias' },
+                            { label: 'Mise à jour', value: 'updated_at' },
+                        ]}
+                        url={route('#level.index')}
+                    />
                     <Button variant="outline" size="sm" asChild>
                         <Link href={route('#level.create')}>
                             <Plus size={15} />

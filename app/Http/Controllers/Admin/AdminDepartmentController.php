@@ -5,16 +5,43 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DepartmentRequest;
 use App\Models\Department;
+use App\Services\SearchableService;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class AdminDepartmentController extends Controller
 {
-    public function index(): Response
+    private const FIELDS = [
+        'name',
+        'alias',
+        'created_at',
+        'updated_at',
+    ];
+
+    private const FIELDS_RELATIONS = [
+        'faculty' => ['name'],
+        'levels' => ['name'],
+    ];
+
+    private const COLUMNS_SORT = [
+        'name',
+        'alias',
+        'created_at',
+        'updated_at',
+    ];
+
+    public function index(SearchableService $searchable): Response
     {
-        $departments = Department::with(['faculty', 'levels'])
-            ->orderByDesc('updated_at')
+        $builder = $searchable->handle(
+            Department::query()->with(['faculty', 'levels']),
+            self::FIELDS,
+            self::FIELDS_RELATIONS
+        );
+
+        $departments = QueryBuilder::for($builder)
+            ->allowedSorts(self::COLUMNS_SORT)
             ->paginate();
 
         return Inertia::render('admin/department/index', [

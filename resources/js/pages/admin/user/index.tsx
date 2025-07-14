@@ -1,5 +1,6 @@
 import { Heading } from '@/components/heading';
 import { Button } from '@/components/ui/button';
+import { FilterInput } from '@/components/ui/filter-input';
 import { Pagination } from '@/components/ui/pagination';
 import AppLayout from '@/layouts/app-layout';
 import { UsersTable } from '@/shared/user/users-table';
@@ -21,7 +22,15 @@ export default function UsersIndex() {
             <div className="container-sidebar">
                 <Heading title="Liste des utilisateurs">Consultez et gérez l'ensemble des utilisateurs de l'établissement.</Heading>
                 <div className="mb-4 flex items-center justify-between">
-                    <div>{/* filtre ou recherche éventuel(le) */}</div>
+                    <FilterInput
+                        availableSorts={[
+                            { label: 'Nom', value: 'name' },
+                            { label: 'Email vérifié', value: 'email_verified_at' },
+                            { label: 'Adresse e-mail', value: 'email' },
+                            { label: 'Mise à jour', value: 'updated_at' },
+                        ]}
+                        url={route('#user.index')}
+                    />
                     <Button variant="outline" size="sm" asChild>
                         <Link href={route('#user.create')}>
                             <Plus size={15} />
