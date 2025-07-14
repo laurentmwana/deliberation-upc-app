@@ -5,22 +5,46 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CourseRequest;
 use App\Models\Course;
+use App\Services\SearchableService;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class AdminCourseController extends Controller
 {
-    public function index(): Response
+    private const FIELDS = [
+        'name',
+        'alias',
+        'credits',
+        'created_at',
+    ];
+
+    private const FIELDS_RELATIONS = [
+        'teacher' => ['name', 'gender', 'firstname'],
+        'level' => ['name', 'alias'],
+        'semester' => ['name', 'full_name'],
+    ];
+
+    private const COLUMNS_SORT = ['name', 'credits', 'alias', 'created_at', 'updated_at'];
+
+    public function index(SearchableService $searchable): Response
     {
-        $courses = Course::with(['teacher', 'level', 'semester'])
-            ->orderByDesc('updated_at')
+        $builder = $searchable->handle(
+            Course::query()->with(['teacher', 'level', 'semester']),
+            self::FIELDS,
+            self::FIELDS_RELATIONS
+        );
+
+        $courses = QueryBuilder::for($builder)
+            ->allowedSorts(self::COLUMNS_SORT)
             ->paginate();
 
         return Inertia::render('admin/course/index', [
             'courses' => $courses,
         ]);
     }
+
 
     public function create(): Response
     {
