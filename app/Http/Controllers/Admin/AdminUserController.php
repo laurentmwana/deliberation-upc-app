@@ -7,17 +7,49 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Models\Student;
 use App\Models\User;
+use App\Services\SearchableService;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class AdminUserController extends Controller
 {
-    public function index(): Response
+private const FIELDS = [
+        'name',
+        'email',
+        'created_at',
+    ];
+
+    private const FIELDS_RELATIONS = [
+        'student' => [
+            'name',
+            'firstname',
+            'registration_token',
+            'gender',
+        ],
+    ];
+
+    private const COLUMNS_SORT = [
+        'name',
+        'email',
+        'created_at',
+        'updated_at',
+    ];
+
+    public function index(SearchableService $searchable): Response
     {
-        $users = User::with(['student'])
-            ->orderByDesc('updated_at')
-            ->where('role', '!=', RoleUserEnum::ADMIN->value)
+        $builder = $searchable->handle(
+            User::query()
+                ->with(['student'])
+                ->where('role', '!=', RoleUserEnum::ADMIN->value),
+            self::FIELDS,
+            self::FIELDS_RELATIONS
+        );
+
+        $users = QueryBuilder::for($builder)
+            ->allowedSorts(self::COLUMNS_SORT)
+            ->defaultSort('-updated_at')
             ->paginate();
 
         return Inertia::render('admin/user/index', [

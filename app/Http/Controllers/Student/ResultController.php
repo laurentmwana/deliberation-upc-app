@@ -19,9 +19,7 @@ class ResultController extends Controller
         $student = Student::where('user_id', $user->id)->first();
 
         if (!$student) {
-            return Inertia::render('result/index', [
-                'student' => null
-            ]);
+            abort(404, "Ce compte n'est pas associé à un étudiant.");
         }
 
         $builder = $student->results()->with(['deliberation', 'deliberation.level', 'deliberation.year', 'deliberation.semester']);
