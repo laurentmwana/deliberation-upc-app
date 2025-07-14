@@ -1,5 +1,6 @@
 import { Heading } from '@/components/heading';
 import { Button } from '@/components/ui/button';
+import { FilterInput } from '@/components/ui/filter-input';
 import { Pagination } from '@/components/ui/pagination';
 import AppLayout from '@/layouts/app-layout';
 import { TeachersTable } from '@/shared/teacher/teachers-table';
@@ -20,12 +21,19 @@ export default function Index() {
         <AppLayout>
             <Head title="Professeurs" />
             <div className="container-sidebar space-y-6">
-                <Heading title="Professeurs">
-                    Liste complète des professeurs disponibles.
-                </Heading>
+                <Heading title="Professeurs">Liste complète des professeurs disponibles.</Heading>
 
                 <div className="flex items-center justify-between">
-                    <div>{/* Tu pourras ajouter ici un filtre plus tard */}</div>
+                    <FilterInput
+                        availableSorts={[
+                            { label: 'Nom', value: 'name' },
+                            { label: 'Postnom', value: 'firstname' },
+                            { label: 'Genre', value: 'gender' },
+                            { label: 'Téléphone', value: 'phone' },
+                            { label: 'Mise à jour', value: 'updated_at' },
+                        ]}
+                        url={route('#teacher.index')}
+                    />
                     <Button variant="outline" size="sm" asChild>
                         <Link href={route('#teacher.create')}>
                             <Plus size={15} />
