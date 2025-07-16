@@ -14,7 +14,6 @@ class YearSeeder extends Seeder
     public function run(): void
     {
         $years = [
-            ['name' => '2023-2024', 'start' => 2023, 'end' => 2024, 'is_closed' => true, 'closed_at' => now()],
             ['name' => '2024-2025', 'start' => 2024, 'end' => 2025, 'is_closed' => false],
         ];
         foreach ($years as $year) {

@@ -14,7 +14,7 @@ class TeacherSeeder extends Seeder
      */
     public function run(): void
     {
-        $teachers = Teacher::factory(10)->create();
+        $teachers = Teacher::factory(5)->create();
 
         foreach ($teachers as $teacher) {
 

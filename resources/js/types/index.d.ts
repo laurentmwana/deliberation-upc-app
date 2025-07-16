@@ -36,8 +36,9 @@ export interface SharedData {
 export interface FlashMessage {
     success: string | null;
     danger: string | null;
+    error: string | null;
     warning: string | null;
-    danger: string | null;
+    info: string | null;
 }
 
 export interface UserModel {
